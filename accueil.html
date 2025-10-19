@@ -12,6 +12,7 @@
       --card-bg: rgba(255, 255, 255, 0.05);
       --text-light: #fff;
       --accent: #00e5ff;
+      --active-tab: #333;
     }
 
     * {
@@ -24,6 +25,7 @@
       background: var(--bg-gradient);
       color: var(--text-light);
       padding: 10px;
+      position: relative;
     }
 
     .banner {
@@ -154,14 +156,52 @@
       font-size: 14px;
       text-align: center;
       cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 8px;
     }
 
-    .nav div:hover {
+    .nav .active {
+      background: var(--active-tab);
       color: var(--accent);
+    }
+
+    /* Popup info */
+    .info-popup {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      z-index: 1000;
+      display: none;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .info-popup .close-btn {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    .info-popup .close-btn:hover {
+      color: #fff;
     }
   </style>
 </head>
 <body>
+
+  <div class="info-popup" id="infoPopup">
+    <div class="close-btn" onclick="document.getElementById('infoPopup').style.display='none'">✖</div>
+    🎮 Bienvenue sur Soray ! Découvrez les jeux immersifs et vos revenus VR en un seul endroit.
+  </div>
 
   <div class="banner">
     <img src="https://example.com/vr-banner.jpg" alt="Soray Banner">
@@ -187,10 +227,10 @@
   </div>
 
   <div class="actions">
-    <div class="action-btn">Recharger</div>
-    <div class="action-btn">Retirer</div>
-    <div class="action-btn">Pointage</div>
-    <div class="action-btn">Centre de Tâches</div>
+    <div class="action-btn" onclick="location.href='recharger.html'">Recharger</div>
+    <div class="action-btn" onclick="location.href='retirer.html'">Retirer</div>
+    <div class="action-btn" onclick="location.href='pointage.html'">Pointage</div>
+    <div class="action-btn" onclick="location.href='taches.html'">Centre de Tâches</div>
   </div>
 
   <div class="games">
@@ -216,11 +256,20 @@
   </div>
 
   <div class="nav">
-    <div>Accueil</div>
-    <div>Produit</div>
-    <div>Équipe</div>
-    <div>Moi</div>
+    <div class="active">Accueil</div>
+    <div onclick="location.href='produit.html'">Produit</div>
+    <div onclick="location.href='equipe.html'">Équipe</div>
+    <div onclick="location.href='profil.html'">Moi</div>
   </div>
+
+  <script>
+    // Affiche la popup après 2 secondes
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById('infoPopup').style.display = 'block';
+      }, 2000);
+    };
+  </script>
 
 </body>
 </html>
