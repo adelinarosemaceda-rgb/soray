@@ -78,12 +78,12 @@ body {
   flex-direction: column;
   height: 100vh; /* plein écran */
   justify-content: space-between;
-  padding: 5px 10px;
+  padding: 10px;
 }
 
-/* Banner (20% écran) */
+/* Banner (25% écran pour plus d'espace) */
 .banner {
-  flex: 0 0 20%;
+  flex: 0 0 25%;
   text-align: center;
 }
 .banner img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
@@ -130,9 +130,9 @@ body {
 }
 .action-btn:hover { background: #1769aa; }
 
-/* Games (30% écran) */
+/* Games (25% écran) */
 .games {
-  flex: 0 0 30%;
+  flex: 0 0 25%;
   display: flex;
   flex-direction: column;
 }
@@ -155,9 +155,9 @@ body {
 .game-item img { width: 100%; border-radius: 5px; height: 60px; object-fit: cover; }
 .game-item span { font-size: clamp(10px, 3vw, 12px); font-weight: 500; }
 
-/* Navigation (15% écran) */
+/* Navigation (10% écran au lieu de 15%) */
 .nav {
-  flex: 0 0 15%;
+  flex: 0 0 10%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -169,7 +169,7 @@ body {
   text-align: center;
   cursor: pointer;
   border-radius: 8px;
-  padding: 6px 0;
+  padding: 4px 0; /* moins haut pour réduire espace */
   font-size: clamp(10px, 3vw, 14px);
   color: #ccc;
 }
