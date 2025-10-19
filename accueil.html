@@ -18,7 +18,10 @@
       --popup-text: #000;
     }
 
-    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
     body {
       margin: 0;
@@ -33,7 +36,10 @@
       margin-bottom: 20px;
     }
 
-    .banner img { width: 100%; border-radius: 12px; }
+    .banner img {
+      width: 100%;
+      border-radius: 12px;
+    }
 
     .banner h2 {
       margin-top: 10px;
@@ -58,11 +64,21 @@
       backdrop-filter: blur(8px);
     }
 
-    .stat-card img { width: 40px; margin-bottom: 8px; }
+    .stat-card img {
+      width: 40px;
+      margin-bottom: 8px;
+    }
 
-    .stat-card h3 { margin: 0; font-size: 16px; }
+    .stat-card h3 {
+      margin: 0;
+      font-size: 16px;
+    }
 
-    .stat-card p { margin: 5px 0 0; font-size: 14px; color: var(--accent); }
+    .stat-card p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      color: var(--accent);
+    }
 
     .actions {
       display: flex;
@@ -85,13 +101,18 @@
       min-width: 80px;
     }
 
-    .action-btn:hover { background: #1769aa; }
+    .action-btn:hover {
+      background: #1769aa;
+    }
 
     .games {
       margin-bottom: 80px;
     }
 
-    .games h3 { margin-bottom: 10px; font-size: 18px; }
+    .games h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
 
     .game-list {
       display: flex;
@@ -110,9 +131,16 @@
       min-width: 80px;
     }
 
-    .game-item img { width: 100%; border-radius: 8px; margin-bottom: 6px; }
+    .game-item img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
 
-    .game-item span { font-size: 14px; font-weight: 500; }
+    .game-item span {
+      font-size: 14px;
+      font-weight: 500;
+    }
 
     .nav {
       position: fixed;
@@ -136,9 +164,14 @@
       transition: background 0.3s;
     }
 
-    .nav div:hover { color: var(--accent); }
+    .nav div:hover {
+      color: var(--accent);
+    }
 
-    .nav .active { background: var(--active-tab); color: var(--text-light); }
+    .nav .active {
+      background: var(--active-tab);
+      color: var(--text-light);
+    }
 
     /* Pop-up */
     .info-popup {
@@ -168,7 +201,10 @@
       margin: 10px 0;
     }
 
-    .info-popup ul li { margin-bottom: 8px; font-size: 14px; }
+    .info-popup ul li {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
 
     .info-popup .close-btn {
       position: absolute;
@@ -179,7 +215,9 @@
       color: #888;
     }
 
-    .info-popup .close-btn:hover { color: #000; }
+    .info-popup .close-btn:hover {
+      color: #000;
+    }
 
     .info-popup .telegram-link {
       margin-top: 10px;
@@ -274,20 +312,19 @@
 
   <!-- Script pour onglet actif + pop-up auto -->
   <script>
-    const navItems = document.querySelectorAll('.nav div');
-    const currentPage = window.location.pathname.split("/").pop().toLowerCase();
-
-    // Vérifie si on est sur la page Accueil
-    if(currentPage === "" || currentPage === "index.html") {
+    window.addEventListener('load', () => {
+      // Onglet actif
+      const navItems = document.querySelectorAll('.nav div');
       navItems.forEach(item => {
-        if(item.textContent.toLowerCase() === "accueil") item.classList.add('active');
+        if(item.textContent.trim().toLowerCase() === 'accueil') {
+          item.classList.add('active');
+        }
       });
 
-      // Afficher pop-up automatiquement
-      window.addEventListener('load', () => {
-        document.getElementById('infoPopup').style.display = 'block';
-      });
-    }
+      // Pop-up automatique
+      const popup = document.getElementById('infoPopup');
+      if(popup) popup.style.display = 'block';
+    });
   </script>
 
 </body>
