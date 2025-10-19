@@ -312,23 +312,18 @@
 
   <!-- Script pour onglet actif + pop-up auto -->
   <script>
-    // Onglet actif
-    const navItems = document.querySelectorAll('.nav div');
-    const currentPage = window.location.pathname.split("/").pop(); // récupère le nom de la page
-
-    navItems.forEach(item => {
-      const pageName = item.textContent.toLowerCase();
-      if(currentPage === "" || currentPage.includes("index")) { // page d'accueil
-        if(pageName === "accueil") item.classList.add('active');
-      }
-      // ajouter d'autres pages si besoin
-    });
-
-    // Pop-up notification automatique sur Accueil
     window.addEventListener('load', () => {
-      if(currentPage === "" || currentPage.includes("index")) {
-        document.getElementById('infoPopup').style.display = 'block';
-      }
+      // Onglet actif
+      const navItems = document.querySelectorAll('.nav div');
+      navItems.forEach(item => {
+        if(item.textContent.trim().toLowerCase() === 'accueil') {
+          item.classList.add('active');
+        }
+      });
+
+      // Pop-up automatique
+      const popup = document.getElementById('infoPopup');
+      if(popup) popup.style.display = 'block';
     });
   </script>
 
