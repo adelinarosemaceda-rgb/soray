@@ -1,207 +1,279 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soray - Auth</title>
-  <style>
-    :root {
-      --primary-color: #2196f3;
-      --background-gradient: linear-gradient(135deg, #1a1a1a, #003366);
-      --card-background: rgba(255, 255, 255, 0.1);
-      --text-color: #ffffff;
-      --input-background: rgba(255, 255, 255, 0.15);
-      --input-text: #fff;
-      --button-color: #2196f3;
-      --button-text: #fff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soray - Auth</title>
+<style>
+:root {
+  --primary-color: #2196f3;
+  --background-gradient: linear-gradient(135deg, #1a1a1a, #003366);
+  --card-background: rgba(255, 255, 255, 0.1);
+  --text-color: #ffffff;
+  --input-background: rgba(255, 255, 255, 0.15);
+  --input-text: #fff;
+  --button-color: #2196f3;
+  --button-text: #fff;
+}
 
-    * {
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+* { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
-    body {
-      margin: 0;
-      height: 100vh;
-      background: var(--background-gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-color);
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  padding: 10px;
+}
 
-    .container {
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-      animation: fadeIn 0.6s ease-in-out;
-    }
+.container {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
 
-    .logo {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 10px;
-      display: block;
-    }
+.logo { width: 80px; height: 80px; margin: 0 auto 10px; display: block; }
+h1 { font-size: clamp(24px, 5vw, 28px); margin-bottom: 20px; }
 
-    h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
+.card {
+  background: var(--card-background);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
 
-    .card {
-      background: var(--card-background);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
-    }
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 8px;
+  background: var(--input-background);
+  color: var(--input-text);
+  font-size: 15px;
+}
 
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: none;
-      border-radius: 8px;
-      background: var(--input-background);
-      color: var(--input-text);
-      font-size: 15px;
-    }
+.password-wrapper { position: relative; }
+.toggle-password {
+  position: absolute; right: 12px; top: 12px;
+  cursor: pointer; color: #ccc; user-select: none;
+}
 
-    option {
-      color: #000;
-      background: #fff;
-    }
+button {
+  width: 100%;
+  padding: 12px;
+  background: var(--button-color);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover { background: #1769aa; }
 
-    .password-wrapper {
-      position: relative;
-    }
+.switch {
+  margin-top: 10px; cursor: pointer; text-decoration: underline;
+  color: #ccc; font-size: 14px;
+}
 
-    .toggle-password {
-      position: absolute;
-      right: 12px;
-      top: 12px;
-      cursor: pointer;
-      color: #ccc;
-    }
+/* Dropdown iOS-style */
+.select-wrapper { position: relative; margin-bottom: 15px; user-select: none; }
+.custom-select {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s;
+}
+.custom-select:hover { background: rgba(255,255,255,0.25); }
+.custom-select .selected::after {
+  content: "▾"; position: absolute; right: 12px; top: 50%;
+  transform: translateY(-50%); font-size: 16px; color: #fff;
+}
 
-    button {
-      width: 100%;
-      padding: 12px;
-      background: var(--button-color);
-      color: var(--button-text);
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
+.custom-select .options {
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 10;
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
 
-    button:hover {
-      background: #1769aa;
-    }
+.custom-select.open .options {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
 
-    .switch {
-      margin-top: 10px;
-      cursor: pointer;
-      text-decoration: underline;
-      color: #ccc;
-    }
+.custom-select .options div {
+  padding: 12px 10px;
+  cursor: pointer;
+  margin: 3px;
+  border-radius: 6px;
+  transition: all 0.2s ease, transform 0.15s ease, opacity 0.15s ease;
+  box-shadow: inset 0 -1px rgba(0,0,0,0.05);
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+.custom-select .options div:hover {
+  background: var(--primary-color);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+.custom-select .options div:active {
+  transform: scale(1.05) translateY(-2px);
+}
+
+.custom-select .options div.selected-option {
+  background: #1769aa;
+  color: #fff;
+  transform: scale(1.05) translateY(-2px);
+  opacity: 0.95;
+}
+
+/* Animation fade-in */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 360px) {
+  .card { padding: 20px; }
+  input, button { padding: 10px; font-size: 14px; }
+  .logo { width: 60px; height: 60px; }
+  .custom-select { padding: 10px; font-size: 14px; }
+}
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <img src="https://raw.githubusercontent.com/adelinarosemaceda-rgb/soray/3fb8e4b1f30640514cad9d6cb03c012a8d9f9dd8/Copilot_20251019_163236.png" alt="Soray Logo" class="logo">
-    <h1>Soray</h1>
+<div class="container">
+  <img src="https://raw.githubusercontent.com/adelinarosemaceda-rgb/soray/3fb8e4b1f30640514cad9d6cb03c012a8d9f9dd8/Copilot_20251019_163236.png" alt="Soray Logo" class="logo">
+  <h1>Soray</h1>
 
-    <div class="card" id="registerCard">
-      <form id="registerForm">
-        <select id="country" required>
-          <option value="" disabled selected>Choisissez votre pays</option>
-          <option value="+226">Burkina Faso (+226)</option>
-          <option value="+237">Cameroun (+237)</option>
-          <option value="+242">Congo (+242)</option>
-          <option value="+225">Côte d'Ivoire (+225)</option>
-          <option value="+241">Gabon (+241)</option>
-          <option value="+227">Niger (+227)</option>
-          <option value="+228">Togo (+228)</option>
-        </select>
-
-        <input type="tel" id="phone" placeholder="Numéro de téléphone" required>
-
-        <div class="password-wrapper">
-          <input type="password" id="password" placeholder="Mot de passe" required>
-          <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
+  <!-- Formulaire inscription -->
+  <div class="card" id="registerCard">
+    <form id="registerForm">
+      <div class="select-wrapper">
+        <div class="custom-select" id="countrySelect">
+          <div class="selected">Choisissez votre pays</div>
+          <div class="options">
+            <div data-value="+226">Burkina Faso (+226)</div>
+            <div data-value="+237">Cameroun (+237)</div>
+            <div data-value="+242">Congo (+242)</div>
+            <div data-value="+225">Côte d'Ivoire (+225)</div>
+            <div data-value="+241">Gabon (+241)</div>
+            <div data-value="+227">Niger (+227)</div>
+            <div data-value="+228">Togo (+228)</div>
+          </div>
         </div>
+        <input type="hidden" id="country" required>
+      </div>
 
-        <div class="password-wrapper">
-          <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
-          <span class="toggle-password" onclick="togglePassword('confirmPassword', this)">👁️</span>
-        </div>
+      <input type="tel" id="phone" placeholder="Numéro de téléphone" required>
 
-        <input type="text" id="inviteCode" placeholder="Code d’invitation" required>
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="Mot de passe" required>
+        <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
+      </div>
 
-        <button type="submit">S'inscrire</button>
-        <div class="switch" onclick="toggleForms()">Aller à la connexion</div>
-      </form>
-    </div>
+      <div class="password-wrapper">
+        <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
+        <span class="toggle-password" onclick="togglePassword('confirmPassword', this)">👁️</span>
+      </div>
 
-    <div class="card" id="loginCard" style="display:none;">
-      <form id="loginForm">
-        <input type="tel" placeholder="Numéro de téléphone" required>
+      <input type="text" id="inviteCode" placeholder="Code d’invitation" required>
 
-        <div class="password-wrapper">
-          <input type="password" placeholder="Mot de passe" required>
-          <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
-        </div>
-
-        <button type="submit">Se connecter</button>
-        <div class="switch" onclick="toggleForms()">Aller à l'inscription</div>
-      </form>
-    </div>
+      <button type="submit">S'inscrire</button>
+      <div class="switch" onclick="toggleForms()">Aller à la connexion</div>
+    </form>
   </div>
 
-  <script>
-    // Changement automatique de l'indicatif
-    const countrySelect = document.getElementById('country');
-    const phoneInput = document.getElementById('phone');
-    countrySelect.addEventListener('change', () => {
-      phoneInput.value = countrySelect.value + " ";
-    });
+  <!-- Formulaire login -->
+  <div class="card" id="loginCard" style="display:none;">
+    <form id="loginForm">
+      <input type="tel" placeholder="Numéro de téléphone" required>
+      <div class="password-wrapper">
+        <input type="password" id="loginPassword" placeholder="Mot de passe" required>
+        <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
+      </div>
+      <button type="submit">Se connecter</button>
+      <div class="switch" onclick="toggleForms()">Aller à l'inscription</div>
+    </form>
+  </div>
+</div>
 
-    // Basculer entre inscription et connexion
-    function toggleForms() {
-      document.getElementById('registerCard').style.display =
-        document.getElementById('registerCard').style.display === 'none' ? 'block' : 'none';
-      document.getElementById('loginCard').style.display =
-        document.getElementById('loginCard').style.display === 'none' ? 'block' : 'none';
-    }
+<script>
+const phoneInput = document.getElementById('phone');
+const countrySelectWrapper = document.getElementById('countrySelect');
+const selected = countrySelectWrapper.querySelector('.selected');
+const optionsContainer = countrySelectWrapper.querySelector('.options');
+const hiddenInput = document.getElementById('country');
 
-    // Afficher / masquer le mot de passe
-    function togglePassword(id, icon) {
-      const input = icon.previousElementSibling;
-      if (input.type === 'password') {
-        input.type = 'text';
-        icon.textContent = '🙈';
-      } else {
-        input.type = 'password';
-        icon.textContent = '👁️';
-      }
-    }
+// Toggle dropdown
+selected.addEventListener('click', () => countrySelectWrapper.classList.toggle('open'));
 
-    // Pré-remplir le code d’invitation via l’URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const inviteCode = urlParams.get('invite');
-    if (inviteCode) {
-      document.getElementById('inviteCode').value = inviteCode;
-    }
-  </script>
+// Sélection option avec effet “élévation” + fade
+optionsContainer.querySelectorAll('div').forEach(option => {
+  option.addEventListener('click', () => {
+    optionsContainer.querySelectorAll('div').forEach(opt => opt.classList.remove('selected-option'));
+    option.classList.add('selected-option');
+
+    selected.textContent = option.textContent;
+    hiddenInput.value = option.dataset.value;
+    phoneInput.value = option.dataset.value + " ";
+
+    // Animation scale + fade
+    option.style.transition = "transform 0.2s ease, opacity 0.2s ease";
+    option.style.transform = "scale(1.08) translateY(-3px)";
+    option.style.opacity = "0.95";
+
+    setTimeout(() => countrySelectWrapper.classList.remove('open'), 200);
+  });
+});
+
+// Fermer si clic en dehors
+document.addEventListener('click', (e) => {
+  if (!countrySelectWrapper.contains(e.target)) {
+    countrySelectWrapper.classList.remove('open');
+  }
+});
+
+// Basculer inscription / connexion
+function toggleForms() {
+  document.getElementById('registerCard').style.display =
+    document.getElementById('registerCard').style.display === 'none' ? 'block' : 'none';
+  document.getElementById('loginCard').style.display =
+    document.getElementById('loginCard').style.display === 'none' ? 'block' : 'none';
+}
+
+// Toggle mot de passe
+function togglePassword(id, icon) {
+  const input = document.getElementById(id);
+  if (input.type === 'password') { input.type = 'text'; icon.textContent = '🙈'; }
+  else { input.type = 'password'; icon.textContent = '👁️'; }
+}
+
+// Pré-remplir code d’invitation via URL
+const urlParams = new URLSearchParams(window.location.search);
+const inviteCode = urlParams.get('invite');
+if (inviteCode) { document.getElementById('inviteCode').value = inviteCode; }
+</script>
+
 </body>
 </html>
