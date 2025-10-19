@@ -12,35 +12,25 @@
       --card-bg: rgba(255, 255, 255, 0.05);
       --text-light: #fff;
       --accent: #00e5ff;
+      --active-tab: #333;
+      --popup-bg: #fff;
+      --popup-border: #4caf50;
+      --popup-text: #000;
     }
 
-    * {
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
     body {
       margin: 0;
       background: var(--bg-gradient);
       color: var(--text-light);
       padding: 10px;
+      position: relative;
     }
 
-    .banner {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .banner img {
-      width: 100%;
-      border-radius: 12px;
-    }
-
-    .banner h2 {
-      margin-top: 10px;
-      font-size: 20px;
-      font-weight: 600;
-    }
+    .banner { text-align: center; margin-bottom: 20px; }
+    .banner img { width: 100%; border-radius: 12px; }
+    .banner h2 { margin-top: 10px; font-size: 20px; font-weight: 600; }
 
     .stats {
       display: flex;
@@ -59,21 +49,9 @@
       backdrop-filter: blur(8px);
     }
 
-    .stat-card img {
-      width: 40px;
-      margin-bottom: 8px;
-    }
-
-    .stat-card h3 {
-      margin: 0;
-      font-size: 16px;
-    }
-
-    .stat-card p {
-      margin: 5px 0 0;
-      font-size: 14px;
-      color: var(--accent);
-    }
+    .stat-card img { width: 40px; margin-bottom: 8px; }
+    .stat-card h3 { margin: 0; font-size: 16px; }
+    .stat-card p { margin: 5px 0 0; font-size: 14px; color: var(--accent); }
 
     .actions {
       display: flex;
@@ -96,26 +74,11 @@
       min-width: 80px;
     }
 
-    .action-btn:hover {
-      background: #1769aa;
-    }
+    .action-btn:hover { background: #1769aa; }
 
-    .games {
-      margin-bottom: 80px;
-    }
-
-    .games h3 {
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
-
-    .game-list {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
+    .games { margin-bottom: 80px; }
+    .games h3 { margin-bottom: 10px; font-size: 18px; }
+    .game-list { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
     .game-item {
       flex: 1 1 calc(25% - 10px);
       background: var(--card-bg);
@@ -125,17 +88,8 @@
       backdrop-filter: blur(6px);
       min-width: 80px;
     }
-
-    .game-item img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 6px;
-    }
-
-    .game-item span {
-      font-size: 14px;
-      font-weight: 500;
-    }
+    .game-item img { width: 100%; border-radius: 8px; margin-bottom: 6px; }
+    .game-item span { font-size: 14px; font-weight: 500; }
 
     .nav {
       position: fixed;
@@ -154,15 +108,82 @@
       font-size: 14px;
       text-align: center;
       cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 8px;
     }
 
-    .nav div:hover {
-      color: var(--accent);
+    .nav .active { background: var(--active-tab); color: var(--accent); }
+    .nav div:hover { color: var(--accent); }
+
+    /* Pop-up Notification */
+    .info-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: var(--popup-bg);
+      color: var(--popup-text);
+      border: 2px solid var(--popup-border);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      z-index: 1000;
+      max-width: 90%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .info-popup.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .info-popup h3 { margin-top: 0; font-size: 18px; color: var(--popup-border); }
+    .info-popup ul { padding-left: 20px; margin: 10px 0; }
+    .info-popup ul li { margin-bottom: 8px; font-size: 14px; }
+
+    .info-popup .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .info-popup .close-btn:hover { color: #000; }
+
+    .info-popup .telegram-link {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #2196f3;
+      text-decoration: underline;
+      cursor: pointer;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
 
+  <!-- POPUP MESSAGE -->
+  <div class="info-popup" id="infoPopup">
+    <div class="close-btn" onclick="closePopup()">✖</div>
+    <h3>Message Notification</h3>
+    <p>Nous sommes passionnés par les jeux, la technologie et la création du futur du divertissement immersif. Depuis 2013, Virtuix repousse sans cesse les limites du jeu en réalité virtuelle, offrant des expériences immersives aux utilisateurs du monde entier.</p>
+    <ul>
+      <li>Bonus d'inscription : 200 FCFA.</li>
+      <li>Bonus de connexion quotidien : 20 FCFA.</li>
+      <li>Invitez vos amis à investir et recevez un bonus de succès équivalent à 30 % de votre investissement.</li>
+      <li>Les fonds de votre compte sont libres de retrait en plusieurs fois à tout moment.</li>
+      <li>Virtuix sera lancé en Côte d'Ivoire, au Burkina Faso, au Cameroun, au Togo et au Bénin le 22 septembre.</li>
+      <li>Rejoignez notre groupe Telegram pour plus d'informations sur Telegram.</li>
+    </ul>
+    <div class="telegram-link" onclick="window.open('https://t.me/virtuix', '_blank')">Cliquez pour accéder au canal Telegram officiel ></div>
+  </div>
+
+  <!-- DASHBOARD -->
   <div class="banner">
     <img src="https://example.com/vr-banner.jpg" alt="Soray Banner">
     <h2>Entrez Dans Un Nouveau Monde</h2>
@@ -187,8 +208,8 @@
   </div>
 
   <div class="actions">
-    <div class="action-btn">Recharger</div>
-    <div class="action-btn">Retirer</div>
+    <div class="action-btn" onclick="location.href='recharger.html'">Recharger</div>
+    <div class="action-btn" onclick="location.href='retirer.html'">Retirer</div>
     <div class="action-btn">Pointage</div>
     <div class="action-btn">Centre de Tâches</div>
   </div>
@@ -222,5 +243,18 @@
     <div>Moi</div>
   </div>
 
+  <script>
+    const popup = document.getElementById('infoPopup');
+
+    // Afficher la popup au chargement
+    window.addEventListener('load', () => {
+      setTimeout(() => { popup.classList.add('show'); }, 500);
+    });
+
+    function closePopup() {
+      popup.classList.remove('show');
+      setTimeout(() => { popup.style.display = 'none'; }, 400);
+    }
+  </script>
 </body>
 </html>
