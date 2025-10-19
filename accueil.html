@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VR Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2196f3;
+      --bg-gradient: linear-gradient(135deg, #0f0f0f, #1a237e);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --text-light: #fff;
+      --accent: #00e5ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg-gradient);
+      color: var(--text-light);
+      padding: 10px;
+    }
+
+    .banner {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .banner img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .banner h2 {
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+      gap: 10px;
+    }
+
+    .stat-card {
+      flex: 1;
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-card img {
+      width: 40px;
+      margin-bottom: 8px;
+    }
+
+    .stat-card h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .stat-card p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      color: var(--accent);
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .action-btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .action-btn:hover {
+      background: #1769aa;
+    }
+
+    .games {
+      margin-bottom: 80px;
+    }
+
+    .games h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .game-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .game-item {
+      background: var(--card-bg);
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .game-item img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+
+    .game-item span {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #111;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #333;
+    }
+
+    .nav div {
+      color: #ccc;
+      font-size: 14px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .nav div:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">
+    <img src="https://example.com/vr-banner.jpg" alt="VR Banner">
+    <h2>Entrer Un Nouveau Monde</h2>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <img src="https://example.com/controller-icon.png" alt="Solde">
+      <h3>FCFA 0</h3>
+      <p>Mon Solde</p>
+    </div>
+    <div class="stat-card">
+      <img src="https://example.com/headset-icon.png" alt="Revenus">
+      <h3>FCFA 2,600</h3>
+      <p>Revenus cumulés</p>
+    </div>
+    <div class="stat-card">
+      <img src="https://example.com/earbuds-icon.png" alt="Service">
+      <h3>Service client</h3>
+      <p>Support</p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <div class="action-btn">Recharger</div>
+    <div class="action-btn">Retirer</div>
+    <div class="action-btn">Pointage</div>
+    <div class="action-btn">Centre de Tâches</div>
+  </div>
+
+  <div class="games">
+    <h3>Jeux pour Tous</h3>
+    <div class="game-list">
+      <div class="game-item">
+        <img src="https://example.com/hubris.jpg" alt="Hubris">
+        <span>HUBRIS</span>
+      </div>
+      <div class="game-item">
+        <img src="https://example.com/sniperelite.jpg" alt="Sniper Elite VR">
+        <span>SNIPER ELITE VR</span>
+      </div>
+      <div class="game-item">
+        <img src="https://example.com/breachers.jpg" alt="Breachers">
+        <span>BREACHERS</span>
+      </div>
+      <div class="game-item">
+        <img src="https://example.com/unknown.jpg" alt="Game 4">
+        <span>???</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div>Accueil</div>
+    <div>Produit</div>
+    <div>Équipe</div>
+    <div>Moi</div>
+  </div>
+
+</body>
+</html>
