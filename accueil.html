@@ -47,10 +47,11 @@
       justify-content: space-between;
       margin: 20px 0;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .stat-card {
-      flex: 1;
+      flex: 1 1 calc(33.333% - 10px);
       background: var(--card-bg);
       padding: 15px;
       border-radius: 12px;
@@ -75,13 +76,15 @@
     }
 
     .actions {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
       margin-bottom: 25px;
     }
 
     .action-btn {
+      flex: 1 1 calc(25% - 10px);
       background: var(--primary);
       color: #fff;
       padding: 12px;
@@ -90,6 +93,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: background 0.3s;
+      min-width: 80px;
     }
 
     .action-btn:hover {
@@ -106,17 +110,20 @@
     }
 
     .game-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .game-item {
+      flex: 1 1 calc(25% - 10px);
       background: var(--card-bg);
       padding: 10px;
       border-radius: 10px;
       text-align: center;
       backdrop-filter: blur(6px);
+      min-width: 80px;
     }
 
     .game-item img {
@@ -202,8 +209,8 @@
         <span>BREACHERS</span>
       </div>
       <div class="game-item">
-        <img src="https://example.com/unknown.jpg" alt="Game 4">
-        <span>???</span>
+        <img src="https://example.com/game4.jpg" alt="Game 4">
+        <span>Game 4</span>
       </div>
     </div>
   </div>
