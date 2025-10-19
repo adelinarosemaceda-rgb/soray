@@ -1,202 +1,207 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soray Dashboard Fullscreen Mobile</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --primary: #2196f3;
-  --bg-gradient: linear-gradient(135deg, #0f0f0f, #1a237e);
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --text-light: #fff;
-  --accent: #00e5ff;
-  --active-tab: #2196f3;
-  --popup-bg: #fff;
-  --popup-border: #4caf50;
-  --popup-text: #000;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soray Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2196f3;
+      --bg-gradient: linear-gradient(135deg, #0f0f0f, #1a237e);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --text-light: #fff;
+      --accent: #00e5ff;
+      --active-tab: #2196f3;
+      --popup-bg: #fff;
+      --popup-border: #4caf50;
+      --popup-text: #000;
+    }
 
-* { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin:0; padding:0; }
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  background: var(--bg-gradient);
-  color: var(--text-light);
-  overflow: hidden; /* pas de scroll par défaut */
-}
+    body {
+      margin: 0;
+      background: var(--bg-gradient);
+      color: var(--text-light);
+      padding: 10px 5px 60px; /* espace pour nav en bas */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-body {
-  display: flex;
-  flex-direction: column;
-}
+    .banner {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .banner img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .banner h2 {
+      margin-top: 10px;
+      font-size: clamp(16px, 4vw, 20px);
+      font-weight: 600;
+    }
 
-/* Pop-up notification */
-.info-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--popup-bg);
-  color: var(--popup-text);
-  border: 2px solid var(--popup-border);
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  z-index: 1000;
-  display: none;
-  width: 90%;
-  max-width: 360px;
-  max-height: 80vh;
-  overflow-y: auto;
-}
-.info-popup h3 { margin-top: 0; color: var(--popup-border); }
-.info-popup ul { padding-left: 20px; margin: 10px 0; }
-.info-popup ul li { margin-bottom: 8px; font-size: 14px; }
-.info-popup .close-btn {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  font-size: 18px;
-  cursor: pointer;
-  color: #888;
-}
-.info-popup .close-btn:hover { color: #000; }
-.info-popup .telegram-link {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #2196f3;
-  text-decoration: underline;
-  cursor: pointer;
-}
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      flex: 1 1 calc(33.333% - 6px);
+      background: var(--card-bg);
+      padding: 8px;
+      border-radius: 10px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+    .stat-card img { width: 30px; margin-bottom: 4px; }
+    .stat-card h3 { margin: 0; font-size: 14px; }
+    .stat-card p { margin: 3px 0 0; font-size: 12px; color: var(--accent); }
 
-/* Layout mobile-first */
-.main-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* plein écran */
-  justify-content: space-between;
-  padding: 10px;
-}
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin: 10px 0 15px;
+    }
+    .action-btn {
+      flex: 1 1 calc(50% - 5px);
+      background: var(--primary);
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .action-btn:hover { background: #1769aa; }
 
-/* Banner (25% écran pour plus d'espace) */
-.banner {
-  flex: 0 0 25%;
-  text-align: center;
-}
-.banner img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
-.banner h2 {
-  font-size: clamp(14px, 4vw, 18px);
-  margin-top: 5px;
-}
+    .games { flex: 1; display: flex; flex-direction: column; }
+    .games h3 { font-size: clamp(14px, 4vw, 18px); margin-bottom: 6px; }
+    .game-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    .game-item {
+      background: var(--card-bg);
+      padding: 6px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .game-item img {
+      width: 100%;
+      border-radius: 5px;
+      height: 80px;
+      object-fit: cover;
+    }
+    .game-item span {
+      font-size: clamp(10px, 3vw, 12px);
+      font-weight: 500;
+    }
 
-/* Stats (20% écran) */
-.stats {
-  flex: 0 0 20%;
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-}
-.stat-card {
-  flex: 1;
-  background: var(--card-bg);
-  border-radius: 12px;
-  text-align: center;
-  padding: 5px;
-  backdrop-filter: blur(6px);
-}
-.stat-card img { width: 30px; margin-bottom: 2px; }
-.stat-card h3 { font-size: clamp(12px, 3vw, 14px); }
-.stat-card p { font-size: clamp(10px, 2.5vw, 12px); color: var(--accent); }
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #111;
+      display: flex;
+      justify-content: space-around;
+      padding: 6px 0;
+      border-top: 1px solid #333;
+    }
+    .nav div {
+      color: #ccc;
+      font-size: 12px;
+      text-align: center;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .nav div:hover { color: var(--accent); }
+    .nav .active {
+      background: var(--active-tab);
+      color: var(--text-light);
+    }
 
-/* Actions (15% écran) */
-.actions {
-  flex: 0 0 15%;
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-}
-.action-btn {
-  flex: 1;
-  background: var(--primary);
-  padding: 5px;
-  border-radius: 10px;
-  text-align: center;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: clamp(10px, 3vw, 12px);
-}
-.action-btn:hover { background: #1769aa; }
+    /* Pop-up */
+    .info-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--popup-bg);
+      color: var(--popup-text);
+      border: 2px solid var(--popup-border);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      z-index: 1000;
+      display: none;
+      max-width: 90%;
+    }
+    .info-popup h3 { margin-top: 0; font-size: 16px; color: var(--popup-border); }
+    .info-popup ul { padding-left: 16px; margin: 8px 0; }
+    .info-popup ul li { margin-bottom: 6px; font-size: 12px; }
+    .info-popup .close-btn {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #888;
+    }
+    .info-popup .close-btn:hover { color: #000; }
+    .info-popup .telegram-link {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #2196f3;
+      text-decoration: underline;
+      cursor: pointer;
+    }
 
-/* Games (25% écran) */
-.games {
-  flex: 0 0 25%;
-  display: flex;
-  flex-direction: column;
-}
-.games h3 { font-size: clamp(14px, 4vw, 16px); margin-bottom: 3px; text-align:center; }
-.game-list {
-  display: flex;
-  overflow-x: auto;
-  gap: 5px;
-  flex: 1;
-  -webkit-overflow-scrolling: touch;
-}
-.game-item {
-  flex: 0 0 auto;
-  background: var(--card-bg);
-  padding: 5px;
-  border-radius: 10px;
-  text-align: center;
-  min-width: 100px;
-}
-.game-item img { width: 100%; border-radius: 5px; height: 60px; object-fit: cover; }
-.game-item span { font-size: clamp(10px, 3vw, 12px); font-weight: 500; }
-
-/* Navigation (10% écran au lieu de 15%) */
-.nav {
-  flex: 0 0 10%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: #111;
-  border-top: 1px solid #333;
-}
-.nav div {
-  flex: 1;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 8px;
-  padding: 4px 0; /* moins haut pour réduire espace */
-  font-size: clamp(10px, 3vw, 14px);
-  color: #ccc;
-}
-.nav div:hover { color: var(--accent); }
-.nav .active { background: var(--active-tab); color: var(--text-light); }
-</style>
+    @media (max-width: 360px) {
+      body { padding: 5px 3px 55px; }
+      .stat-card { padding: 6px; }
+      .action-btn { padding: 8px; font-size: 12px; }
+      .game-item img { height: 60px; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="info-popup" id="infoPopup">
-  <div class="close-btn" onclick="document.getElementById('infoPopup').style.display='none'">✖</div>
-  <h3>Message Notification</h3>
-  <p>Nous sommes passionnés par les jeux et la technologie...</p>
-  <ul>
-    <li>Bonus d'inscription : 200 FCFA.</li>
-    <li>Bonus de connexion quotidien : 20 FCFA.</li>
-    <li>Invitez vos amis et recevez 30 % bonus.</li>
-  </ul>
-  <div class="telegram-link" onclick="window.open('https://t.me/virtuix', '_blank')">Cliquez pour accéder au canal Telegram ></div>
-</div>
+  <!-- Pop-up notification -->
+  <div class="info-popup" id="infoPopup">
+    <div class="close-btn" onclick="document.getElementById('infoPopup').style.display='none'">✖</div>
+    <h3>Message Notification</h3>
+    <p>Nous sommes passionnés par les jeux, la technologie et la création du futur du divertissement immersif. Depuis 2013, Virtuix repousse sans cesse les limites du jeu en réalité virtuelle, offrant des expériences immersives aux utilisateurs du monde entier.</p>
+    <ul>
+      <li>Bonus d'inscription : 200 FCFA.</li>
+      <li>Bonus de connexion quotidien : 20 FCFA.</li>
+      <li>Invitez vos amis à investir et recevez un bonus de succès équivalent à 30 % de votre investissement.</li>
+      <li>Les fonds de votre compte sont libres de retrait en plusieurs fois à tout moment.</li>
+      <li>Virtuix sera lancé en Côte d'Ivoire, au Burkina Faso, au Cameroun, au Togo et au Bénin le 22 septembre.</li>
+      <li>Rejoignez notre groupe Telegram pour plus d'informations sur Telegram.</li>
+    </ul>
+    <div class="telegram-link" onclick="window.open('https://t.me/virtuix', '_blank')">Cliquez pour accéder au canal Telegram officiel ></div>
+  </div>
 
-<div class="main-container">
+  <!-- Banner -->
   <div class="banner">
     <img src="https://example.com/vr-banner.jpg" alt="Soray Banner">
     <h2>Entrez Dans Un Nouveau Monde</h2>
   </div>
 
+  <!-- Stats -->
   <div class="stats">
     <div class="stat-card">
       <img src="https://example.com/controller-icon.png" alt="Solde">
@@ -215,6 +220,7 @@ body {
     </div>
   </div>
 
+  <!-- Actions -->
   <div class="actions">
     <div class="action-btn" onclick="location.href='recharger.html'">Recharger</div>
     <div class="action-btn">Retirer</div>
@@ -222,6 +228,7 @@ body {
     <div class="action-btn">Centre de Tâches</div>
   </div>
 
+  <!-- Games -->
   <div class="games">
     <h3>Jeux pour Tous</h3>
     <div class="game-list">
@@ -244,26 +251,30 @@ body {
     </div>
   </div>
 
+  <!-- Navigation -->
   <div class="nav">
     <div>Accueil</div>
     <div>Produit</div>
     <div>Équipe</div>
     <div>Moi</div>
   </div>
-</div>
 
-<script>
-window.addEventListener('load', () => {
-  // Onglet actif
-  document.querySelectorAll('.nav div').forEach(item => {
-    if(item.textContent.trim().toLowerCase() === 'accueil') {
-      item.classList.add('active');
-    }
-  });
-  // Pop-up automatique
-  document.getElementById('infoPopup').style.display = 'block';
-});
-</script>
+  <!-- Script pour onglet actif + pop-up auto -->
+  <script>
+    window.addEventListener('load', () => {
+      // Onglet actif
+      const navItems = document.querySelectorAll('.nav div');
+      navItems.forEach(item => {
+        if(item.textContent.trim().toLowerCase() === 'accueil') {
+          item.classList.add('active');
+        }
+      });
+
+      // Pop-up automatique
+      const popup = document.getElementById('infoPopup');
+      if(popup) popup.style.display = 'block';
+    });
+  </script>
 
 </body>
 </html>
