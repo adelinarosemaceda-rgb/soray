@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soray - Auth</title>
+  <style>
+    :root {
+      --primary-color: #2196f3;
+      --background-gradient: linear-gradient(135deg, #1a1a1a, #003366);
+      --card-background: rgba(255, 255, 255, 0.1);
+      --text-color: #ffffff;
+      --input-background: rgba(255, 255, 255, 0.15);
+      --input-text: #fff;
+      --button-color: #2196f3;
+      --button-text: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: var(--background-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 10px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: var(--card-background);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      background: var(--input-background);
+      color: var(--input-text);
+      font-size: 15px;
+    }
+
+    option {
+      color: #000;
+      background: #fff;
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      cursor: pointer;
+      color: #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: var(--button-color);
+      color: var(--button-text);
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #1769aa;
+    }
+
+    .switch {
+      margin-top: 10px;
+      cursor: pointer;
+      text-decoration: underline;
+      color: #ccc;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="Copilot_20251019_140958.png" alt="Soray Logo" class="logo">
+    <h1>Soray</h1>
+
+    <div class="card" id="registerCard">
+      <form id="registerForm">
+        <select id="country" required>
+          <option value="" disabled selected>Choisissez votre pays</option>
+          <option value="+226">Burkina Faso (+226)</option>
+          <option value="+237">Cameroun (+237)</option>
+          <option value="+242">Congo (+242)</option>
+          <option value="+225">Côte d'Ivoire (+225)</option>
+          <option value="+241">Gabon (+241)</option>
+          <option value="+227">Niger (+227)</option>
+          <option value="+228">Togo (+228)</option>
+        </select>
+
+        <input type="tel" id="phone" placeholder="Numéro de téléphone" required>
+
+        <div class="password-wrapper">
+          <input type="password" id="password" placeholder="Mot de passe" required>
+          <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
+        </div>
+
+        <div class="password-wrapper">
+          <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
+          <span class="toggle-password" onclick="togglePassword('confirmPassword', this)">👁️</span>
+        </div>
+
+        <input type="text" id="inviteCode" placeholder="Code d’invitation" required>
+
+        <button type="submit">S'inscrire</button>
+        <div class="switch" onclick="toggleForms()">Aller à la connexion</div>
+      </form>
+    </div>
+
+    <div class="card" id="loginCard" style="display:none;">
+      <form id="loginForm">
+        <input type="tel" placeholder="Numéro de téléphone" required>
+
+        <div class="password-wrapper">
+          <input type="password" placeholder="Mot de passe" required>
+          <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
+        </div>
+
+        <button type="submit">Se connecter</button>
+        <div class="switch" onclick="toggleForms()">Aller à l'inscription</div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Changement automatique de l'indicatif
+    const countrySelect = document.getElementById('country');
+    const phoneInput = document.getElementById('phone');
+    countrySelect.addEventListener('change', () => {
+      phoneInput.value = countrySelect.value + " ";
+    });
+
+    // Basculer entre inscription et connexion
+    function toggleForms() {
+      document.getElementById('registerCard').style.display =
+        document.getElementById('registerCard').style.display === 'none' ? 'block' : 'none';
+      document.getElementById('loginCard').style.display =
+        document.getElementById('loginCard').style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Afficher / masquer le mot de passe
+    function togglePassword(id, icon) {
+      const input = icon.previousElementSibling;
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = '🙈';
+      } else {
+        input.type = 'password';
+        icon.textContent = '👁️';
+      }
+    }
+
+    // Pré-remplir le code d’invitation via l’URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const inviteCode = urlParams.get('invite');
+    if (inviteCode) {
+      document.getElementById('inviteCode').value = inviteCode;
+    }
+  </script>
+</body>
+</html>
