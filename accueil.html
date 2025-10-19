@@ -12,7 +12,7 @@
       --card-bg: rgba(255, 255, 255, 0.05);
       --text-light: #fff;
       --accent: #00e5ff;
-      --active-tab: #2196f3; /* Couleur de l'onglet actif */
+      --active-tab: #2196f3;
       --popup-bg: #fff;
       --popup-border: #4caf50;
       --popup-text: #000;
@@ -274,7 +274,7 @@
   <!-- Actions -->
   <div class="actions">
     <div class="action-btn" onclick="location.href='recharger.html'">Recharger</div>
-    <div class="action-btn" onclick="document.getElementById('infoPopup').style.display='block'">Retirer</div>
+    <div class="action-btn">Retirer</div>
     <div class="action-btn">Pointage</div>
     <div class="action-btn">Centre de Tâches</div>
   </div>
@@ -310,16 +310,24 @@
     <div>Moi</div>
   </div>
 
-  <!-- Script pour onglet actif -->
+  <!-- Script pour onglet actif + pop-up auto -->
   <script>
+    // Onglet actif
     const navItems = document.querySelectorAll('.nav div');
     const currentPage = window.location.pathname.split("/").pop(); // récupère le nom de la page
 
     navItems.forEach(item => {
-      item.classList.remove('active');
       const pageName = item.textContent.toLowerCase();
-      if(currentPage.includes(pageName)) {
-        item.classList.add('active');
+      if(currentPage === "" || currentPage.includes("index")) { // page d'accueil
+        if(pageName === "accueil") item.classList.add('active');
+      }
+      // ajouter d'autres pages si besoin
+    });
+
+    // Pop-up notification automatique sur Accueil
+    window.addEventListener('load', () => {
+      if(currentPage === "" || currentPage.includes("index")) {
+        document.getElementById('infoPopup').style.display = 'block';
       }
     });
   </script>
