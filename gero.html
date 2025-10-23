@@ -8,9 +8,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
   <style>
-    body {
+    html, body {
+      height: 100%;
+      margin: 0;
       font-family: 'Poppins', sans-serif;
       scroll-behavior: smooth;
+      display: flex;
+      flex-direction: column;
     }
     .navbar {
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -39,7 +43,11 @@
       background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be') center/cover no-repeat;
       color: white;
       padding: 120px 0;
-      animation: fadeIn 3s ease-in-out;
+      animation: fadeIn 2s ease-in-out;
+      transition: transform 0.5s ease;
+    }
+    .hero:hover {
+      transform: scale(1.03);
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(1.05); }
@@ -54,17 +62,30 @@
       height: 200px;
       object-fit: cover;
     }
+    .btn {
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .page-section {
+      display: none;
+      flex: 1;
+      padding-bottom: 80px;
+    }
+    .page-section.active {
+      display: block;
+    }
     footer {
       background: #111;
       color: #ccc;
       padding: 10px 0;
       font-size: 13px;
-    }
-    .page-section {
-      display: none;
-    }
-    .page-section.active {
-      display: block;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 999;
     }
   </style>
 </head>
@@ -102,6 +123,23 @@
         <button class="btn btn-primary btn-lg mt-3" onclick="showPage('parcelles')">Voir les offres</button>
       </div>
     </header>
+    <section class="container text-center my-5">
+      <h2 class="section-title">Pourquoi nous choisir ?</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h5>✅ Sécurité foncière</h5>
+          <p>Parcelles avec titres fonciers vérifiés et accompagnement juridique.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>🏗️ Expertise BTP</h5>
+          <p>Équipe qualifiée pour tous vos projets de construction et rénovation.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>📞 Service client</h5>
+          <p>Réactif, transparent et disponible pour vous conseiller.</p>
+        </div>
+      </div>
+    </section>
   </div>
 
   <div id="parcelles" class="page-section container">
@@ -146,7 +184,7 @@
   <div id="contact" class="page-section container">
     <h2 class="section-title text-center">Contactez-nous</h2>
     <form class="row g-3">
-      <div class="col-md-6">
+        <div class="col-md-6">
         <label for="name" class="form-label">Nom</label>
         <input type="text" class="form-control" id="name" placeholder="Votre nom">
       </div>
@@ -190,7 +228,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="text-center mt-5">
+  <footer class="text-center">
     <div class="container">
       <p>&copy; 2025 Parcelles & BTP Pro</p>
       <p><small>Site conçu par Sessi Wilfried Doria Tossou</small></p>
