@@ -1,362 +1,400 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ImmoBTP - Vente de parcelles & services BTP</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parcelles & BTP Pro</title>
+  <meta name="description" content="Vente de parcelles et services BTP professionnels au Bénin" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
   <style>
-    /* ----------- Style global ----------- */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
       scroll-behavior: smooth;
+      display: flex;
+      flex-direction: column;
     }
-
-    /* ----------- Barre de navigation ----------- */
     .navbar {
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-
-    .navbar-brand {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
     .navbar-brand img {
-      width: 35px;
-      height: auto;
+      height: 40px;
+      margin-right: 10px;
     }
-
-    .navbar-brand span {
-      font-size: 1rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .navbar-nav {
-      margin-left: auto;
-    }
-
-    .nav-link.active {
-      font-weight: 600;
-      color: #0d6efd !important;
-    }
-
-    @media (max-width: 768px) {
-      .navbar-brand img { width: 28px; }
-      .navbar-brand span { font-size: 0.9rem; }
-      .navbar-nav .nav-link { padding: 6px 8px; font-size: 0.85rem; }
-    }
-
-    /* ----------- Section d’accueil ----------- */
-    header {
-      background: url('https://images.unsplash.com/photo-1581091012184-5c79c59d1d8f?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-      height: 80vh;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    .nav-link {
       position: relative;
+      transition: color 0.3s;
     }
-
-    header::after {
-      content: "";
+    .nav-link:hover {
+      color: #0d6efd;
+    }
+    .nav-link.active::after {
+      content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.45);
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #0d6efd;
     }
-
-    header h1, header p, header a {
-      position: relative;
-      z-index: 2;
+    .hero {
+      background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be') center/cover no-repeat;
+      color: white;
+      padding: 120px 0;
+      animation: fadeIn 2s ease-in-out;
+      transition: transform 0.5s ease;
     }
-
-    header h1 {
-      font-size: 2.4rem;
-      font-weight: bold;
+    .hero:hover {
+      transform: scale(1.03);
     }
-
-    header p { font-size: 1.05rem; }
-
-    /* ----------- Sections ----------- */
-    section { padding: 80px 0; }
-
-    .section-title { text-align: center; margin-bottom: 40px; }
-
-    .card img { height: 200px; object-fit: cover; }
-
-    footer {
-      background-color: #222;
-      color: #ccc;
-      text-align: center;
-      padding: 30px 0;
-      font-size: 0.9rem;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(1.05); }
+      to { opacity: 1; transform: scale(1); }
     }
-
-    footer a { color: #fff; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    .section-title {
+      margin-top: 60px;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+    .card img {
+      height: 200px;
+      object-fit: cover;
+    }
+    .btn {
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .page-section {
+      display: none;
+      flex: 1;
+      padding-bottom: 80px;
+    }
+    .page-section.active {
+      display: block;
+    }
+footer {
+  background: #111;
+  color: #ccc;
+  padding: 5px 0;
+  font-size: 13px;
+  text-align: center;
+}
   </style>
 </head>
-
 <body>
-  <!-- Barre de navigation -->
+
+  <!-- Header -->
   <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#accueil">
-        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="logo">
-        <span>ImmoBTP</span>
+      <a class="navbar-brand d-flex align-items-center" href="#" onclick="showPage('home')">
+        <img src="https://img.icons8.com/isometric/50/building.png" alt="Logo">
+        <span class="fw-bold">Parcelles & BTP Pro</span>
       </a>
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" href="#parcelles">Parcelles</a></li>
-        <li class="nav-item"><a class="nav-link" href="#btp">BTP</a></li>
-        <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#" onclick="showPage('home')">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('parcelles')">Parcelles</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('btp')">BTP</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('about')">À propos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('contact')">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('devis')">Demande de devis</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
-  <!-- Section d'accueil -->
-  <header id="accueil">
-    <div class="container text-center">
-      <h1>Investissez dans votre avenir</h1>
-      <p>Vente de parcelles et services BTP fiables et professionnels.</p>
-      <a href="#parcelles" class="btn btn-light mt-3">Voir les offres</a>
-    </div>
-  </header>
+  <!-- Accueil -->
+  <div id="home" class="page-section active">
+    <header class="hero text-center">
+      <div class="container">
+        <h1 class="display-5 fw-bold">Investissez dans l'immobilier au Bénin</h1>
+        <p class="lead">Parcelles sécurisées & prestations BTP de qualité</p>
+        <button class="btn btn-primary btn-lg mt-3" onclick="showPage('parcelles')">Voir les offres</button>
+      </div>
+    </header>
 
-  <!-- Section Parcelles -->
-  <section id="parcelles">
-    <div class="container">
-      <div class="section-title">
-        <h2>Nos Parcelles Disponibles</h2>
-        <p>Des terrains bien situés, sécurisés et prêts à être bâtis.</p>
-      </div>
-      <div class="row" id="parcelles-list">
-        <!-- Cartes insérées dynamiquement par JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Section BTP -->
-  <section id="btp" class="bg-light">
-    <div class="container">
-      <div class="section-title">
-        <h2>Nos Services BTP</h2>
-        <p>De la conception à la réalisation, votre satisfaction est notre priorité.</p>
-      </div>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card border-0 shadow-sm">
-            <div class="card-body text-center">
-              <h5>Construction de maisons</h5>
-              <p>Des plans modernes et durables pour tous les budgets.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card border-0 shadow-sm">
-            <div class="card-body text-center">
-              <h5>Rénovation & Aménagement</h5>
-              <p>Transformez vos bâtiments avec des matériaux de qualité.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card border-0 shadow-sm">
-            <div class="card-body text-center">
-              <h5>Suivi & Expertise</h5>
-              <p>Un accompagnement technique et administratif complet.</p>
-            </div>
-          </div>
+<section class="container my-5">
+  <h2 class="section-title text-center">Pourquoi nous choisir ?</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="card-img-top" alt="Sécurité foncière">
+        <div class="card-body">
+          <h5 class="card-title">✅ Sécurité foncière</h5>
+          <p class="card-text">Parcelles avec titres fonciers vérifiés et accompagnement juridique.</p>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- À propos -->
-  <section id="apropos">
-    <div class="container text-center">
-      <h2>À propos de nous</h2>
-      <p>ImmoBTP est une entreprise spécialisée dans la vente de terrains et la prestation de services BTP. Nous mettons un point d’honneur à offrir des produits légaux, accessibles et fiables.</p>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="bg-light">
-    <div class="container text-center">
-      <h2>Contactez-nous</h2>
-      <p>Besoin d’informations ? Appelez-nous ou envoyez-nous un message.</p>
-      <!-- mailto prêt à l'emploi : change l'adresse si besoin -->
-      <a id="contact-mail" href="mailto:contact@immobtp.com" class="btn btn-primary">Envoyer un mail</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 ImmoBTP. Tous droits réservés. | <a href="#">Mentions légales</a></p>
-  </footer>
-
-  <!-- Modal fiche parcelle -->
-  <div class="modal fade" id="ficheModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalTitle">Parcelle</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" class="card-img-top" alt="Expertise BTP">
+        <div class="card-body">
+          <h5 class="card-title">🏗️ Expertise BTP</h5>
+          <p class="card-text">Équipe qualifiée pour tous vos projets de construction et rénovation.</p>
         </div>
-        <div class="modal-body">
-          <div id="modalCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
-            <div class="carousel-inner" id="modalCarouselInner"></div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#modalCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#modalCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
-          </div>
-
-          <p><strong>Superficie :</strong> <span id="modalSuperficie"></span></p>
-          <p><strong>Prix :</strong> <span id="modalPrix"></span></p>
-          <p id="modalDesc"></p>
-
-          <div class="ratio ratio-16x9 mt-3">
-            <iframe id="modalMap" src="" allowfullscreen></iframe>
-          </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <img src="https://images.unsplash.com/photo-1581090700227-1e8e1f9b9c3b" class="card-img-top" alt="Service client">
+        <div class="card-body">
+          <h5 class="card-title">📞 Service client</h5>
+          <p class="card-text">Réactif, transparent et disponible pour vous conseiller.</p>
         </div>
-        <div class="modal-footer">
-          <a id="modalContact" class="btn btn-success" href="mailto:contact@immobtp.com">Contacter le vendeur</a>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</section>
+  </div>
+
+  <!-- Parcelles -->
+  <div id="parcelles" class="page-section container">
+    <h2 class="section-title text-center">Nos Parcelles Disponibles</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="card-img-top" alt="Parcelle 1">
+          <div class="card-body">
+            <h5 class="card-title">Parcelle à Calavi</h5>
+            <p class="card-text">Superficie : 500 m²<br>Prix : 3.5M FCFA<br>Statut : Titre foncier</p>
+            <button class="btn btn-outline-primary" onclick="afficherParcelle('calavi')">Demander infos</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Détail Parcelle -->
+  <div id="parcelle-detail" class="page-section container" style="display:none;">
+    <h2 class="section-title text-center" id="parcelle-titre"></h2>
+    <div id="parcelle-carousel" class="carousel slide mb-4" data-bs-ride="carousel">
+      <div class="carousel-inner" id="carousel-images"></div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#parcelle-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#parcelle-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+    <p><strong>Superficie :</strong> <span id="parcelle-superficie"></span></p>
+    <p><strong>Prix :</strong> <span id="parcelle-prix"></span></p>
+    <p><strong>Statut :</strong> <span id="parcelle-statut"></span></p>
+    <div class="ratio ratio-16x9 mt-4">
+      <iframe id="parcelle-map" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- BTP -->
+  <div id="btp" class="page-section container">
+    <h2 class="section-title text-center">Nos services BTP</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <img src="https://images.unsplash.com/photo-1599423300746-b62533397364" class="card-img-top" alt="Construction">
+          <div class="card-body text-center">
+            <h5 class="card-title">🏗️ Construction</h5>
+            <p class="card-text">Maisons, immeubles, clôtures avec matériaux certifiés.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <img src="https://images.unsplash.com/photo-1613977257363-707ba9348225" class="card-img-top" alt="Rénovation">
+          <div class="card-body text-center">
+            <h5 class="card-title">🔧 Rénovation</h5>
+            <p class="card-text">Modernisation de bâtiments anciens, finitions premium.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <img src="https://images.unsplash.com/photo-1581090700227-1e8e1f9b9c3e" class="card-img-top" alt="Plans & Suivi">
+          <div class="card-body text-center">
+            <h5 class="card-title">📐 Plans & Suivi</h5>
+            <p class="card-text">Plans architecturaux, suivi de chantier, devis détaillés.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="section-title text-center">Quelques réalisations</h3>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img src="https://images.unsplash.com/photo-1588854337118-1c1a5f3b6c3e" class="card-img-top" alt="Villa moderne">
+          <div class="card-body">
+            <h5 class="card-title">Villa moderne à Cotonou</h5>
+            <p class="card-text">Construction en 2024 – Note client : ⭐⭐⭐⭐⭐</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="card-img-top" alt="Clôture sécurisée">
+          <div class="card-body">
+            <h5 class="card-title">Clôture sécurisée à Calavi</h5>
+            <p class="card-text">Livrée en 2023 – Note client : ⭐⭐⭐⭐</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- À propos -->
+  <div id="about" class="page-section container">
+    <h2 class="section-title text-center">À propos de nous</h2>
+    <p class="text-center mb-4">Nous sommes une entreprise béninoise spécialisée dans la vente de parcelles sécurisées et les services BTP. Notre mission est de rendre l’investissement immobilier accessible, fiable et durable.</p>
+
+    <h3 class="section-title text-center">Nos réalisations en image</h3>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <img src="https://images.unsplash.com/photo-1599423300746-b62533397364" class="card-img-top" alt="Projet résidentiel">
+          <div class="card-body">
+            <h5 class="card-title">Projet résidentiel à Abomey</h5>
+            <p class="card-text">Finitions haut de gamme – Note client : ⭐⭐⭐⭐⭐</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <img src="https://images.unsplash.com/photo-1613977257363-707ba9348225" class="card-img-top" alt="Bâtiment commercial">
+          <div class="card-body">
+            <h5 class="card-title">Bâtiment commercial à Porto-Novo</h5>
+            <p class="card-text">Livré en 2022 – Note client : ⭐⭐⭐⭐</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div id="contact" class="page-section container">
+    <h2 class="section-title text-center">Contactez-nous</h2>
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="name" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="name" placeholder="Votre nom">
+      </div>
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Votre email">
+      </div>
+      <div class="col-12">
+        <label for="message" class="form-label">Message</label>
+        <textarea class="form-control" id="message" rows="4" placeholder="Votre demande..."></textarea>
+      </div>
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-success">Envoyer</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Devis -->
+  <div id="devis" class="page-section container">
+    <h2 class="section-title text-center">Demande de devis</h2>
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="service" class="form-label">Type de service</label>
+        <select class="form-select" id="service">
+          <option>Construction</option>
+          <option>Rénovation</option>
+          <option>Plan & suivi</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="budget" class="form-label">Budget estimé</label>
+        <input type="text" class="form-control" id="budget" placeholder="Ex: 10M FCFA">
+      </div>
+      <div class="col-12">
+        <label for="details" class="form-label">Détails du projet</label>
+        <textarea class="form-control" id="details" rows="4" placeholder="Décrivez votre besoin..."></textarea>
+      </div>
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-warning">Envoyer la demande</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Parcelles & BTP Pro</p>
+      <p class="mb-1"><small>Site conçu par Sessi Wilfried Doria Tossou</small></p>
+    </div>
+  </footer>
+
+  <!-- Script de navigation SPA -->
   <script>
-    // Données d'exemple : modifie/rajoute des objets ici
+    function showPage(pageId) {
+      const sections = document.querySelectorAll('.page-section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+
+      const links = document.querySelectorAll('.nav-link');
+      links.forEach(link => {
+        link.classList.remove('active');
+      });
+      const activeLink = Array.from(links).find(link => link.textContent.toLowerCase().includes(pageId));
+      if (activeLink) activeLink.classList.add('active');
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
     const parcelles = [
       {
         id: "calavi",
         titre: "Parcelle à Calavi",
-        superficie: "300 m²",
-        prix: "3 500 000 FCFA",
-        description: "Parcelle résidentielle bien située, proche des commodités. Titre foncier disponible.",
+        superficie: "500 m²",
+        prix: "3.5M FCFA",
+        statut: "Titre foncier",
         images: [
           "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-          "https://images.unsplash.com/photo-1501183638710-841dd1904471"
+          "https://images.unsplash.com/photo-1588854337118-1c1a5f3b6c3e"
         ],
-        mapEmbed: "https://www.google.com/maps?q=abomey-calavi,benin&output=embed"
-      },
-      {
-        id: "portonovo",
-        titre: "Terrain à Porto-Novo",
-        superficie: "500 m²",
-        prix: "4 200 000 FCFA",
-        description: "Lotissement approuvé, accès routier et viabilisation partielle.",
-        images: [
-          "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba",
-          "https://images.unsplash.com/photo-1570129477492-45c003edd2be"
-        ],
-        mapEmbed: "https://www.google.com/maps?q=porto-novo,benin&output=embed"
+        map: "https://www.google.com/maps?q=calavi,+benin&output=embed"
       }
     ];
-
-    // Remplir la liste des parcelles (HTML)
-    function renderParcelles() {
-      const container = document.getElementById('parcelles-list');
-      container.innerHTML = '';
-      parcelles.forEach(p => {
-        const col = document.createElement('div');
-        col.className = 'col-md-4 mb-4';
-        col.innerHTML = `
-          <div class="card shadow-sm">
-            <img src="${p.images[0]}?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="${p.titre}">
-            <div class="card-body">
-              <h5 class="card-title">${p.titre}</h5>
-              <p class="card-text">${p.superficie} - ${p.prix}</p>
-              <button class="btn btn-primary" data-id="${p.id}" onclick="openFiche('${p.id}')">Voir détails</button>
-            </div>
-          </div>
-        `;
-        container.appendChild(col);
-      });
-    }
-
-    // Ouvrir modal et remplir avec les données
-    function openFiche(id) {
-      const p = parcelles.find(x => x.id === id);
-      if (!p) return;
-      document.getElementById('modalTitle').textContent = p.titre;
-      document.getElementById('modalSuperficie').textContent = p.superficie;
-      document.getElementById('modalPrix').textContent = p.prix;
-      document.getElementById('modalDesc').textContent = p.description;
-      document.getElementById('modalMap').src = p.mapEmbed;
-
-      // Carousel images
-      const inner = document.getElementById('modalCarouselInner');
-      inner.innerHTML = '';
-      p.images.forEach((src, idx) => {
-        const item = document.createElement('div');
-        item.className = 'carousel-item' + (idx === 0 ? ' active' : '');
-        item.innerHTML = `<img src="${src}?auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="img${idx+1}">`;
-        inner.appendChild(item);
-      });
-
-      // Mettre à jour le contact mailto pour inclure la référence
-      const mail = `mailto:contact@immobtp.com?subject=Info%20sur%20${encodeURIComponent(p.titre)}&body=Bonjour,%0A%0AJe%20souhaite%20des%20informations%20sur%20la%20parcelle%20:${encodeURIComponent(p.titre)}.%0A%0AMerci.`;
-      document.getElementById('modalContact').href = mail;
-      document.getElementById('contact-mail').href = mail;
-
-      const modal = new bootstrap.Modal(document.getElementById('ficheModal'));
-      modal.show();
-    }
-
-    // Navigation : lien actif (au scroll) et clic
-    document.addEventListener('DOMContentLoaded', () => {
-      renderParcelles();
-
-      // Activer le lien correspondant au hash (si présent)
-      function setActiveByHash() {
-        const hash = location.hash.replace('#','') || 'accueil';
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        const link = Array.from(document.querySelectorAll('.nav-link')).find(l => l.getAttribute('href') === '#' + hash);
-        if (link) link.classList.add('active');
-      }
-      setActiveByHash();
-
-      // Smooth scroll + set active on click
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.querySelector(link.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            history.pushState(null, '', link.getAttribute('href'));
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-          }
-        });
-      });
-
-      // Set active while scrolling (optional)
-      window.addEventListener('scroll', () => {
-        const sections = ['accueil','parcelles','btp','apropos','contact'];
-        let current = 'accueil';
-        sections.forEach(id => {
-          const el = document.getElementById(id);
-          if (!el) return;
-          const top = el.getBoundingClientRect().top;
-          if (top <= 120) current = id;
-        });
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        const activeLink = document.querySelector(`.nav-link[href="#${current}"]`);
-        if (activeLink) activeLink.classList.add('active');
-      });
-    });
   </script>
+
+  <script>
+    function afficherParcelle(id) {
+      const p = parcelles.find(p => p.id === id);
+      if (!p) return;
+
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      const detail = document.getElementById('parcelle-detail');
+      detail.style.display = 'block';
+      detail.classList.add('active');
+
+      document.getElementById('parcelle-titre').textContent = p.titre;
+      document.getElementById('parcelle-superficie').textContent = p.superficie;
+      document.getElementById('parcelle-prix').textContent = p.prix;
+      document.getElementById('parcelle-statut').textContent = p.statut;
+      document.getElementById('parcelle-map').src = p.map;
+
+      const carousel = document.getElementById('carousel-images');
+      carousel.innerHTML = "";
+      p.images.forEach((img, index) => {
+        const item = document.createElement('div');
+        item.className = 'carousel-item' + (index === 0 ? ' active' : '');
+        item.innerHTML = `<img src="${img}" class="d-block w-100" alt="Image ${index+1}">`;
+        carousel.appendChild(item);
+      });
+    }
+  </script>
+
 </body>
 </html>
