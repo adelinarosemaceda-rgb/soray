@@ -39,6 +39,11 @@
       background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be') center/cover no-repeat;
       color: white;
       padding: 120px 0;
+      animation: fadeIn 3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(1.05); }
+      to { opacity: 1; transform: scale(1); }
     }
     .section-title {
       margin-top: 60px;
@@ -52,8 +57,14 @@
     footer {
       background: #111;
       color: #ccc;
-      padding: 20px 0;
-      font-size: 14px;
+      padding: 10px 0;
+      font-size: 13px;
+    }
+    .page-section {
+      display: none;
+    }
+    .page-section.active {
+      display: block;
     }
   </style>
 </head>
@@ -62,8 +73,8 @@
   <!-- Header -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img width="50" height="50" src="https://img.icons8.com/isometric/50/building.png" alt="building"/>
+      <a class="navbar-brand d-flex align-items-center" href="#" onclick="showPage('home')">
+        <img src="https://img.icons8.com/isometric/50/building.png" alt="Logo">
         <span class="fw-bold">Parcelles & BTP Pro</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -71,26 +82,29 @@
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="#home">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link" href="#parcelles">Parcelles</a></li>
-          <li class="nav-item"><a class="nav-link" href="#btp">BTP</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#" onclick="showPage('home')">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('parcelles')">Parcelles</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('btp')">BTP</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('about')">À propos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('contact')">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('devis')">Demande de devis</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header id="home" class="hero text-center">
-    <div class="container">
-      <h1 class="display-5 fw-bold">Investissez dans l'immobilier au Bénin</h1>
-      <p class="lead">Parcelles sécurisées & prestations BTP de qualité</p>
-      <a href="#parcelles" class="btn btn-primary btn-lg mt-3">Voir les offres</a>
-    </div>
-  </header>
+  <!-- Pages -->
+  <div id="home" class="page-section active">
+    <header class="hero text-center">
+      <div class="container">
+        <h1 class="display-5 fw-bold">Investissez dans l'immobilier au Bénin</h1>
+        <p class="lead">Parcelles sécurisées & prestations BTP de qualité</p>
+        <button class="btn btn-primary btn-lg mt-3" onclick="showPage('parcelles')">Voir les offres</button>
+      </div>
+    </header>
+  </div>
 
-  <!-- Parcelles -->
-  <section id="parcelles" class="container">
+  <div id="parcelles" class="page-section container">
     <h2 class="section-title text-center">Nos Parcelles Disponibles</h2>
     <div class="row">
       <div class="col-md-4">
@@ -99,16 +113,14 @@
           <div class="card-body">
             <h5 class="card-title">Parcelle à Calavi</h5>
             <p class="card-text">Superficie : 500 m²<br>Prix : 3.5M FCFA<br>Statut : Titre foncier</p>
-            <a href="#contact" class="btn btn-outline-primary">Demander infos</a>
+            <button class="btn btn-outline-primary" onclick="showPage('contact')">Demander infos</button>
           </div>
         </div>
       </div>
-      <!-- Ajouter d'autres parcelles ici -->
     </div>
-  </section>
+  </div>
 
-  <!-- Services BTP -->
-  <section id="btp" class="container">
+  <div id="btp" class="page-section container">
     <h2 class="section-title text-center">Nos Services BTP</h2>
     <div class="row text-center">
       <div class="col-md-4 mb-4">
@@ -124,10 +136,14 @@
         <p>Plans architecturaux, suivi de chantier, devis détaillés.</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Contact -->
-  <section id="contact" class="container">
+  <div id="about" class="page-section container">
+    <h2 class="section-title text-center">À propos de nous</h2>
+    <p class="text-center">Nous sommes une entreprise béninoise spécialisée dans la vente de parcelles sécurisées et les services BTP. Notre mission est de rendre l’investissement immobilier accessible, fiable et durable.</p>
+  </div>
+
+  <div id="contact" class="page-section container">
     <h2 class="section-title text-center">Contactez-nous</h2>
     <form class="row g-3">
       <div class="col-md-6">
@@ -146,7 +162,32 @@
         <button type="submit" class="btn btn-success">Envoyer</button>
       </div>
     </form>
-  </section>
+  </div>
+
+  <div id="devis" class="page-section container">
+    <h2 class="section-title text-center">Demande de devis</h2>
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="service" class="form-label">Type de service</label>
+        <select class="form-select" id="service">
+          <option>Construction</option>
+          <option>Rénovation</option>
+          <option>Plan & suivi</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="budget" class="form-label">Budget estimé</label>
+        <input type="text" class="form-control" id="budget" placeholder="Ex: 10M FCFA">
+      </div>
+      <div class="col-12">
+        <label for="details" class="form-label">Détails du projet</label>
+        <textarea class="form-control" id="details" rows="4" placeholder="Décrivez votre besoin..."></textarea>
+      </div>
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-warning">Envoyer la demande</button>
+      </div>
+    </form>
+  </div>
 
   <!-- Footer -->
   <footer class="text-center mt-5">
@@ -155,6 +196,24 @@
       <p><small>Site conçu par Sessi Wilfried Doria Tossou</small></p>
     </div>
   </footer>
+
+  <!-- Script de navigation SPA -->
+  <script>
+    function showPage(pageId) {
+      const sections = document.querySelectorAll('.page-section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+
+      const links = document.querySelectorAll('.nav-link');
+      links.forEach(link => {
+        link.classList.remove('active');
+      });
+      const activeLink = Array.from(links).find(link => link.textContent.toLowerCase().includes(pageId));
+      if (activeLink) activeLink.classList.add('active');
+    }
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
