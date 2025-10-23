@@ -77,16 +77,13 @@
     .page-section.active {
       display: block;
     }
-    footer {
-      background: #111;
-      color: #ccc;
-      padding: 10px 0;
-      font-size: 13px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      z-index: 999;
-    }
+footer {
+  background: #111;
+  color: #ccc;
+  padding: 5px 0;
+  font-size: 13px;
+  text-align: center;
+}
   </style>
 </head>
 <body>
@@ -158,29 +155,73 @@
     </div>
   </div>
 
-  <div id="btp" class="page-section container">
-    <h2 class="section-title text-center">Nos Services BTP</h2>
-    <div class="row text-center">
-      <div class="col-md-4 mb-4">
-        <h4>🏗️ Construction</h4>
-        <p>Maisons, immeubles, clôtures avec matériaux certifiés.</p>
-      </div>
-      <div class="col-md-4 mb-4">
-        <h4>🔧 Rénovation</h4>
-        <p>Modernisation de bâtiments anciens, finitions premium.</p>
-      </div>
-      <div class="col-md-4 mb-4">
-        <h4>📐 Plans & Suivi</h4>
-        <p>Plans architecturaux, suivi de chantier, devis détaillés.</p>
-      </div>
+<div id="btp" class="page-section container">
+  <h2 class="section-title text-center">Nos Services BTP</h2>
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <h4>🏗️ Construction</h4>
+      <p>Maisons, immeubles, clôtures avec matériaux certifiés.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <h4>🔧 Rénovation</h4>
+      <p>Modernisation de bâtiments anciens, finitions premium.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <h4>📐 Plans & Suivi</h4>
+      <p>Plans architecturaux, suivi de chantier, devis détaillés.</p>
     </div>
   </div>
 
-  <div id="about" class="page-section container">
-    <h2 class="section-title text-center">À propos de nous</h2>
-    <p class="text-center">Nous sommes une entreprise béninoise spécialisée dans la vente de parcelles sécurisées et les services BTP. Notre mission est de rendre l’investissement immobilier accessible, fiable et durable.</p>
+  <h3 class="section-title text-center">Quelques réalisations</h3>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <img src="https://images.unsplash.com/photo-1588854337118-1c1a5f3b6c3e" class="card-img-top" alt="Villa moderne">
+        <div class="card-body">
+          <h5 class="card-title">Villa moderne à Cotonou</h5>
+          <p class="card-text">Construction en 2024 – Note client : ⭐⭐⭐⭐⭐</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="card-img-top" alt="Clôture sécurisée">
+        <div class="card-body">
+          <h5 class="card-title">Clôture sécurisée à Calavi</h5>
+          <p class="card-text">Livrée en 2023 – Note client : ⭐⭐⭐⭐</p>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
+<div id="about" class="page-section container">
+  <h2 class="section-title text-center">À propos de nous</h2>
+  <p class="text-center mb-4">Nous sommes une entreprise béninoise spécialisée dans la vente de parcelles sécurisées et les services BTP. Notre mission est de rendre l’investissement immobilier accessible, fiable et durable.</p>
+
+  <h3 class="section-title text-center">Nos réalisations en image</h3>
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm">
+        <img src="https://images.unsplash.com/photo-1599423300746-b62533397364" class="card-img-top" alt="Projet résidentiel">
+        <div class="card-body">
+          <h5 class="card-title">Projet résidentiel à Abomey</h5>
+          <p class="card-text">Finitions haut de gamme – Note client : ⭐⭐⭐⭐⭐</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm">
+        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348225" class="card-img-top" alt="Bâtiment commercial">
+        <div class="card-body">
+          <h5 class="card-title">Bâtiment commercial à Porto-Novo</h5>
+          <p class="card-text">Livré en 2022 – Note client : ⭐⭐⭐⭐</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
   <div id="contact" class="page-section container">
     <h2 class="section-title text-center">Contactez-nous</h2>
     <form class="row g-3">
@@ -228,12 +269,12 @@
   </div>
 
   <!-- Footer -->
-  <footer class="text-center">
-    <div class="container">
-      <p>&copy; 2025 Parcelles & BTP Pro</p>
-      <p><small>Site conçu par Sessi Wilfried Doria Tossou</small></p>
-    </div>
-  </footer>
+<footer class="text-center">
+  <div class="container">
+    <p class="mb-0">&copy; 2025 Parcelles & BTP Pro</p>
+    <p class="mb-1"><small>Site conçu par Sessi Wilfried Doria Tossou</small></p>
+  </div>
+</footer>
 
   <!-- Script de navigation SPA -->
   <script>
