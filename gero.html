@@ -5,28 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Parcelles & BTP Pro</title>
   <meta name="description" content="Vente de parcelles et services BTP professionnels au Bénin" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
   <style>
-    body { font-family: 'Segoe UI', sans-serif; }
-    .hero { background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be') center/cover no-repeat; color: white; padding: 100px 0; }
-    .section-title { margin-top: 60px; margin-bottom: 30px; }
-    .card img { height: 200px; object-fit: cover; }
-    footer { background: #222; color: #fff; padding: 40px 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .navbar {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .navbar-brand img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    .nav-link {
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-link:hover {
+      color: #0d6efd;
+    }
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #0d6efd;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be') center/cover no-repeat;
+      color: white;
+      padding: 120px 0;
+    }
+    .section-title {
+      margin-top: 60px;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+    .card img {
+      height: 200px;
+      object-fit: cover;
+    }
+    footer {
+      background: #111;
+      color: #ccc;
+      padding: 20px 0;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
   <!-- Header -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Parcelles & BTP Pro</a>
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Real_estate_icon.svg/1024px-Real_estate_icon.svg.png" alt="Logo">
+        <span class="fw-bold">Parcelles & BTP Pro</span>
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="#parcelles">Parcelles</a></li>
-          <li class="nav-item"><a class="nav-link" href="#btp">Services BTP</a></li>
+          <li class="nav-item"><a class="nav-link" href="#btp">BTP</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -34,9 +81,9 @@
   </nav>
 
   <!-- Hero -->
-  <header class="hero text-center">
+  <header id="home" class="hero text-center">
     <div class="container">
-      <h1 class="display-4 fw-bold">Investissez dans l'immobilier au Bénin</h1>
+      <h1 class="display-5 fw-bold">Investissez dans l'immobilier au Bénin</h1>
       <p class="lead">Parcelles sécurisées & prestations BTP de qualité</p>
       <a href="#parcelles" class="btn btn-primary btn-lg mt-3">Voir les offres</a>
     </div>
@@ -47,7 +94,7 @@
     <h2 class="section-title text-center">Nos Parcelles Disponibles</h2>
     <div class="row">
       <div class="col-md-4">
-        <div class="card mb-4">
+        <div class="card mb-4 shadow-sm">
           <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="card-img-top" alt="Parcelle 1">
           <div class="card-body">
             <h5 class="card-title">Parcelle à Calavi</h5>
@@ -56,7 +103,7 @@
           </div>
         </div>
       </div>
-      <!-- Répéter pour d'autres parcelles -->
+      <!-- Ajouter d'autres parcelles ici -->
     </div>
   </section>
 
@@ -64,16 +111,16 @@
   <section id="btp" class="container">
     <h2 class="section-title text-center">Nos Services BTP</h2>
     <div class="row text-center">
-      <div class="col-md-4">
-        <h4>Construction</h4>
+      <div class="col-md-4 mb-4">
+        <h4>🏗️ Construction</h4>
         <p>Maisons, immeubles, clôtures avec matériaux certifiés.</p>
       </div>
-      <div class="col-md-4">
-        <h4>Rénovation</h4>
+      <div class="col-md-4 mb-4">
+        <h4>🔧 Rénovation</h4>
         <p>Modernisation de bâtiments anciens, finitions premium.</p>
       </div>
-      <div class="col-md-4">
-        <h4>Plans & Suivi</h4>
+      <div class="col-md-4 mb-4">
+        <h4>📐 Plans & Suivi</h4>
         <p>Plans architecturaux, suivi de chantier, devis détaillés.</p>
       </div>
     </div>
@@ -102,9 +149,9 @@
   </section>
 
   <!-- Footer -->
-  <footer class="text-center">
+  <footer class="text-center mt-5">
     <div class="container">
-      <p>&copy; 2025 Parcelles & BTP Pro. Tous droits réservés.</p>
+      <p>&copy; 2025 Parcelles & BTP Pro</p>
       <p><small>Site conçu par Sessi Wilfried Doria Tossou</small></p>
     </div>
   </footer>
