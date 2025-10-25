@@ -23,41 +23,48 @@
       flex-direction: column;
     }
 
-    /* Header layout : logo left, nav visually centered */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(33,37,41,0.95);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 8px 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      z-index: 1000;
-      backdrop-filter: blur(6px);
-    }
+/* Header layout : logo left, nav visually centered */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(33,37,41,0.95);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+}
 
-    /* Brand on the left */
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 0 0 auto;
-    }
-    .brand img{
-      height: 48px;
-      width: auto;
-      display:block;
-    }
-    .brand .site-title{
-      font-weight: 700;
-      color: var(--nav-color);
-      font-size: 15px;
-      line-height: 1.05;
-      text-align: left;
-    }
+/* Brand on the left, logo + name stacked vertically */
+.brand {
+  display: flex;
+  flex-direction: column; /* empile verticalement */
+  align-items: center;    /* centre horizontalement */
+  flex: 0 0 auto;
+}
+
+.brand a {
+  display: block; /* permet au clic de couvrir le logo */
+}
+
+.brand img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.site-title-below {
+  font-weight: 700;
+  color: var(--nav-color);
+  font-size: 13px;      /* ajuste selon ton goût */
+  line-height: 1.1;
+  text-align: center;
+  margin-top: 4px;      /* petit espace entre logo et nom */
+}
 
     /* Navigation centered visually using absolute centering */
     .nav-wrap {
@@ -67,19 +74,21 @@
       justify-content: center; /* helps center nav when space available */
     }
 
-    nav#mainNav {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: var(--nav-gap);
-      align-items: center;
-      white-space: nowrap;           /* avoid wrapping onto new line */
-      overflow-x: auto;             /* if too narrow, allow horizontal scroll */
-      -webkit-overflow-scrolling: touch;
-      padding: 6px 4px;
-      scrollbar-width: none; /* Firefox */
-    }
+nav#mainNav {
+  position: absolute;
+  left: 50%;
+  top: 50%;          /* ajoute ceci */
+  transform: translate(-50%, -50%); /* ajuste verticalement */
+  display: flex;
+  gap: var(--nav-gap);
+  align-items: center;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 4px;
+  scrollbar-width: none;
+}
+
     /* hide scrollbar visually but keep scroll functionality */
     nav#mainNav::-webkit-scrollbar { display: none; }
 
@@ -172,10 +181,12 @@
   <!-- HEADER -->
   <header class="site-header" role="banner">
     <div class="brand" aria-hidden="false">
-      <img src="https://img.icons8.com/isometric/100/building.png" alt="">
-      <div class="site-title"></div>
-    </div>
-
+  <a href="#" onclick="showPage('home'); return false;">
+    <img src="https://img.icons8.com/isometric/100/building.png" alt="">
+  </a>
+  <div class="site-title">Parcelles & BTP Pro</div>
+</div>
+    
     <div class="nav-wrap" aria-hidden="false">
       <!-- centered nav (absolute centered) -->
       <nav id="mainNav" aria-label="Menu principal">
