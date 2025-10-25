@@ -414,6 +414,56 @@
       const menuLink = Array.from(document.querySelectorAll('#mainNav a')).find(a => a.textContent.toLowerCase().includes(pageId));
       if(menuLink) menuLink.classList.add('active');
     }
+
+    // === Bouton dans la section Parcelles ===
+    const parcelles = [
+      {
+        id: "calavi",
+        titre: "Parcelle à Calavi",
+        superficie: "500 m²",
+        prix: "3.5M FCFA",
+        statut: "Titre foncier",
+        images: [
+          "https://www.bujumbura-marketing.com/wp-content/uploads/2018/10/WhatsApp-Image-2019-06-09-at-7.22.37-PM-1060x596.jpeg",
+          "https://www.umojaaa.com/wp-content/uploads/2022/12/Plot-in-Rubirizi-Bujumbura-2.jpeg"
+        ],
+        map: "https://www.google.com/maps?q=calavi,+benin&output=embed"
+      }
+    ];
+
+    function afficherParcelle(id){
+      const p = parcelles.find(x => x.id === id);
+      if(!p) return;
+
+      // Masquer toutes les sections et afficher la section détail parcelle
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      const detail = document.getElementById('parcelle-detail');
+      detail.classList.add('active');
+
+      // Remplir les informations de la parcelle
+      document.getElementById('parcelle-titre').textContent = p.titre;
+      document.getElementById('parcelle-superficie').textContent = p.superficie;
+      document.getElementById('parcelle-prix').textContent = p.prix;
+      document.getElementById('parcelle-statut').textContent = p.statut;
+      document.getElementById('parcelle-map').src = p.map;
+
+      // Remplir le carousel d'images
+      const carousel = document.getElementById('carousel-images');
+      carousel.innerHTML = '';
+      p.images.forEach((img, i) => {
+        const item = document.createElement('div');
+        item.className = 'carousel-item' + (i === 0 ? ' active' : '');
+        item.innerHTML = `<img src="${img}" class="d-block w-100" alt="Image ${i+1}">`;
+        carousel.appendChild(item);
+      });
+
+      // Réinitialiser le carousel au premier slide
+      const bs = bootstrap.Carousel.getOrCreateInstance(document.getElementById('parcelle-carousel'));
+      bs.to(0);
+
+      // Scroll en haut de la page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>
