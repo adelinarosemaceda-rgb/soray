@@ -16,106 +16,152 @@
       display: flex;
       flex-direction: column;
     }
-    .navbar {
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .navbar-brand img {
-      height: 40px;
-      margin-right: 10px;
-    }
-    .navbar-brand span {
-  font-size: 15px; /* Réduction du nom */
-  color: #fff;
-}
 
-.navbar-nav .nav-link {
-  margin: 0 10px;
-  font-weight: 500;
-}
+    /* Header et navigation */
+    .navbar {
+      background-color: #111;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .navbar-brand {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .navbar-brand img {
+      height: 50px;
+    }
+
+    .navbar-brand span {
+      display: block;
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+      margin-top: 3px;
+    }
+
+    .navbar-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 0;
+    }
+
+    .nav-item {
+      margin: 5px 10px;
+    }
+
     .nav-link {
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
       position: relative;
       transition: color 0.3s;
     }
+
     .nav-link:hover {
       color: #0d6efd;
     }
+
     .nav-link.active::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: -4px;
       left: 0;
       width: 100%;
       height: 2px;
       background-color: #0d6efd;
     }
+
+    @media (max-width: 768px) {
+      .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      .nav-item {
+        margin: 8px 0;
+      }
+    }
+
+    /* Section héros */
     .hero {
-      background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
       color: white;
       padding: 120px 0;
       animation: fadeIn 2s ease-in-out;
       transition: transform 0.5s ease;
     }
+
     .hero:hover {
       transform: scale(1.03);
     }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(1.05); }
       to { opacity: 1; transform: scale(1); }
     }
+
     .section-title {
       margin-top: 60px;
       margin-bottom: 30px;
       font-weight: 600;
     }
+
     .card img {
       height: 200px;
       object-fit: cover;
     }
+
     .btn {
       transition: all 0.3s ease;
     }
+
     .btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
+
     .page-section {
       display: none;
       flex: 1;
       padding-bottom: 80px;
     }
+
     .page-section.active {
       display: block;
     }
-footer {
-  background: #111;
-  color: #ccc;
-  padding: 5px 0;
-  font-size: 13px;
-  text-align: center;
-}
+
+    footer {
+      background: #111;
+      color: #ccc;
+      padding: 5px 0;
+      font-size: 13px;
+      text-align: center;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- Header -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container d-flex justify-content-between align-items-center">
-    <a class="navbar-brand d-flex align-items-center me-auto" href="#" onclick="showPage('home')">
-      <img src="https://img.icons8.com/isometric/50/building.png" alt="Logo">
-      <span class="fw-bold fs-6">Parcelles & BTP Pro</span>
-    </a>
-    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link active" href="#" onclick="showPage('home')">Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('parcelles')">Parcelles</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('btp')">BTP</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('about')">À propos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('contact')">Contact</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('devis')">Demande de devis</a></li>
-      </ul>
+  <nav class="navbar fixed-top">
+    <div class="navbar-brand">
+      <img src="https://img.icons8.com/isometric/100/building.png" alt="Logo">
+      <span>Parcelles & BTP Pro</span>
     </div>
-  </div>
-</nav>
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link active" href="#" onclick="showPage('home')">Accueil</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('parcelles')">Parcelles</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('btp')">BTP</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('about')">À propos</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('contact')">Contact</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('devis')">Demande de devis</a></li>
+    </ul>
   </nav>
 
   <!-- Accueil -->
@@ -128,38 +174,38 @@ footer {
       </div>
     </header>
 
-<section class="container my-5">
-  <h2 class="section-title text-center">Pourquoi nous choisir ?</h2>
-  <div class="row">
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm h-100">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="card-img-top" alt="Sécurité foncière">
-        <div class="card-body">
-          <h5 class="card-title">✅ Sécurité foncière</h5>
-          <p class="card-text">Parcelles avec titres fonciers vérifiés et accompagnement juridique.</p>
+    <section class="container my-5">
+      <h2 class="section-title text-center">Pourquoi nous choisir ?</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Sécurité foncière">
+            <div class="card-body">
+              <h5 class="card-title">✅ Sécurité foncière</h5>
+              <p class="card-text">Parcelles avec titres fonciers vérifiés et accompagnement juridique.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Expertise BTP">
+            <div class="card-body">
+              <h5 class="card-title">🏗️ Expertise BTP</h5>
+              <p class="card-text">Équipe qualifiée pour tous vos projets de construction et rénovation.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://images.unsplash.com/photo-1598257006462-7c81d0f6c10d?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Service client">
+            <div class="card-body">
+              <h5 class="card-title">📞 Service client</h5>
+              <p class="card-text">Réactif, transparent et disponible pour vous conseiller.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm h-100">
-        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" class="card-img-top" alt="Expertise BTP">
-        <div class="card-body">
-          <h5 class="card-title">🏗️ Expertise BTP</h5>
-          <p class="card-text">Équipe qualifiée pour tous vos projets de construction et rénovation.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm h-100">
-        <img src="https://images.unsplash.com/photo-1581090700227-1e8e1f9b9c3b" class="card-img-top" alt="Service client">
-        <div class="card-body">
-          <h5 class="card-title">📞 Service client</h5>
-          <p class="card-text">Réactif, transparent et disponible pour vous conseiller.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
   </div>
 
   <!-- Parcelles -->
@@ -168,7 +214,7 @@ footer {
     <div class="row">
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="card-img-top" alt="Parcelle 1">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Parcelle 1">
           <div class="card-body">
             <h5 class="card-title">Parcelle à Calavi</h5>
             <p class="card-text">Superficie : 500 m²<br>Prix : 3.5M FCFA<br>Statut : Titre foncier</p>
@@ -205,7 +251,7 @@ footer {
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm h-100">
-          <img src="https://images.unsplash.com/photo-1599423300746-b62533397364" class="card-img-top" alt="Construction">
+          <img src="https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Construction">
           <div class="card-body text-center">
             <h5 class="card-title">🏗️ Construction</h5>
             <p class="card-text">Maisons, immeubles, clôtures avec matériaux certifiés.</p>
@@ -214,7 +260,7 @@ footer {
       </div>
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm h-100">
-          <img src="https://images.unsplash.com/photo-1613977257363-707ba9348225" class="card-img-top" alt="Rénovation">
+          <img src="https://images.unsplash.com/photo-1600573472590-34d5a3f3c1be?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Rénovation">
           <div class="card-body text-center">
             <h5 class="card-title">🔧 Rénovation</h5>
             <p class="card-text">Modernisation de bâtiments anciens, finitions premium.</p>
@@ -223,7 +269,7 @@ footer {
       </div>
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm h-100">
-          <img src="https://images.unsplash.com/photo-1581090700227-1e8e1f9b9c3e" class="card-img-top" alt="Plans & Suivi">
+          <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02e4?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Plans & Suivi">
           <div class="card-body text-center">
             <h5 class="card-title">📐 Plans & Suivi</h5>
             <p class="card-text">Plans architecturaux, suivi de chantier, devis détaillés.</p>
@@ -236,7 +282,7 @@ footer {
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm">
-          <img src="https://images.unsplash.com/photo-1588854337118-1c1a5f3b6c3e" class="card-img-top" alt="Villa moderne">
+          <img src="https://images.unsplash.com/photo-1600585154350-dfeab5f0b7c2?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Villa moderne à Cotonou">
           <div class="card-body">
             <h5 class="card-title">Villa moderne à Cotonou</h5>
             <p class="card-text">Construction en 2024 – Note client : ⭐⭐⭐⭐⭐</p>
@@ -245,7 +291,7 @@ footer {
       </div>
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="card-img-top" alt="Clôture sécurisée">
+          <img src="https://images.unsplash.com/photo-1600585154339-5c3a8e7301da?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Clôture sécurisée">
           <div class="card-body">
             <h5 class="card-title">Clôture sécurisée à Calavi</h5>
             <p class="card-text">Livrée en 2023 – Note client : ⭐⭐⭐⭐</p>
@@ -264,7 +310,7 @@ footer {
     <div class="row">
       <div class="col-md-6 mb-4">
         <div class="card shadow-sm">
-          <img src="https://images.unsplash.com/photo-1599423300746-b62533397364" class="card-img-top" alt="Projet résidentiel">
+          <img src="https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Projet résidentiel">
           <div class="card-body">
             <h5 class="card-title">Projet résidentiel à Abomey</h5>
             <p class="card-text">Finitions haut de gamme – Note client : ⭐⭐⭐⭐⭐</p>
@@ -273,7 +319,7 @@ footer {
       </div>
       <div class="col-md-6 mb-4">
         <div class="card shadow-sm">
-          <img src="https://images.unsplash.com/photo-1613977257363-707ba9348225" class="card-img-top" alt="Bâtiment commercial">
+          <img src="https://images.unsplash.com/photo-1599423301110-4b9a59e24df6?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Bâtiment commercial">
           <div class="card-body">
             <h5 class="card-title">Bâtiment commercial à Porto-Novo</h5>
             <p class="card-text">Livré en 2022 – Note client : ⭐⭐⭐⭐</p>
@@ -339,27 +385,20 @@ footer {
     </div>
   </footer>
 
-  <!-- Script de navigation SPA -->
+  <!-- Script -->
   <script>
     function showPage(pageId) {
       const sections = document.querySelectorAll('.page-section');
-      sections.forEach(section => {
-        section.classList.remove('active');
-      });
+      sections.forEach(section => section.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
 
       const links = document.querySelectorAll('.nav-link');
-      links.forEach(link => {
-        link.classList.remove('active');
-      });
+      links.forEach(link => link.classList.remove('active'));
       const activeLink = Array.from(links).find(link => link.textContent.toLowerCase().includes(pageId));
       if (activeLink) activeLink.classList.add('active');
+      window.scrollTo(0, 0);
     }
-  </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
     const parcelles = [
       {
         id: "calavi",
@@ -368,15 +407,13 @@ footer {
         prix: "3.5M FCFA",
         statut: "Titre foncier",
         images: [
-          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-          "https://images.unsplash.com/photo-1588854337118-1c1a5f3b6c3e"
+          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1599423301207-23a0b1c5d1d2?auto=format&fit=crop&w=1200&q=80"
         ],
         map: "https://www.google.com/maps?q=calavi,+benin&output=embed"
       }
     ];
-  </script>
 
-  <script>
     function afficherParcelle(id) {
       const p = parcelles.find(p => p.id === id);
       if (!p) return;
@@ -400,8 +437,11 @@ footer {
         item.innerHTML = `<img src="${img}" class="d-block w-100" alt="Image ${index+1}">`;
         carousel.appendChild(item);
       });
+      window.scrollTo(0, 0);
     }
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
