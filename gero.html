@@ -43,17 +43,21 @@
       margin-top: 3px;
     }
 
+    /* Correction ici */
     .navbar-nav {
       display: flex;
       justify-content: center;
+      align-items: center;
+      flex-direction: row; /* affichage horizontal */
       flex-wrap: wrap;
       padding-left: 0;
       list-style: none;
       margin-bottom: 0;
+      gap: 15px; /* espacement horizontal entre les éléments */
     }
 
     .nav-item {
-      margin: 5px 10px;
+      margin: 0;
     }
 
     .nav-link {
@@ -80,11 +84,10 @@
 
     @media (max-width: 768px) {
       .navbar-nav {
-        flex-direction: column;
-        align-items: center;
-      }
-      .nav-item {
-        margin: 8px 0;
+        flex-direction: row; /* reste horizontal sur mobile */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
       }
     }
 
@@ -243,138 +246,6 @@
     <div class="ratio ratio-16x9 mt-4">
       <iframe id="parcelle-map" allowfullscreen></iframe>
     </div>
-  </div>
-
-  <!-- BTP -->
-  <div id="btp" class="page-section container">
-    <h2 class="section-title text-center">Nos services BTP</h2>
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100">
-          <img src="https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Construction">
-          <div class="card-body text-center">
-            <h5 class="card-title">🏗️ Construction</h5>
-            <p class="card-text">Maisons, immeubles, clôtures avec matériaux certifiés.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100">
-          <img src="https://images.unsplash.com/photo-1600573472590-34d5a3f3c1be?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Rénovation">
-          <div class="card-body text-center">
-            <h5 class="card-title">🔧 Rénovation</h5>
-            <p class="card-text">Modernisation de bâtiments anciens, finitions premium.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100">
-          <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02e4?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Plans & Suivi">
-          <div class="card-body text-center">
-            <h5 class="card-title">📐 Plans & Suivi</h5>
-            <p class="card-text">Plans architecturaux, suivi de chantier, devis détaillés.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <h3 class="section-title text-center">Quelques réalisations</h3>
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm">
-          <img src="https://images.unsplash.com/photo-1600585154350-dfeab5f0b7c2?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Villa moderne à Cotonou">
-          <div class="card-body">
-            <h5 class="card-title">Villa moderne à Cotonou</h5>
-            <p class="card-text">Construction en 2024 – Note client : ⭐⭐⭐⭐⭐</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm">
-          <img src="https://images.unsplash.com/photo-1600585154339-5c3a8e7301da?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Clôture sécurisée">
-          <div class="card-body">
-            <h5 class="card-title">Clôture sécurisée à Calavi</h5>
-            <p class="card-text">Livrée en 2023 – Note client : ⭐⭐⭐⭐</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- À propos -->
-  <div id="about" class="page-section container">
-    <h2 class="section-title text-center">À propos de nous</h2>
-    <p class="text-center mb-4">Nous sommes une entreprise béninoise spécialisée dans la vente de parcelles sécurisées et les services BTP. Notre mission est de rendre l’investissement immobilier accessible, fiable et durable.</p>
-
-    <h3 class="section-title text-center">Nos réalisations en image</h3>
-    <div class="row">
-      <div class="col-md-6 mb-4">
-        <div class="card shadow-sm">
-          <img src="https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Projet résidentiel">
-          <div class="card-body">
-            <h5 class="card-title">Projet résidentiel à Abomey</h5>
-            <p class="card-text">Finitions haut de gamme – Note client : ⭐⭐⭐⭐⭐</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 mb-4">
-        <div class="card shadow-sm">
-          <img src="https://images.unsplash.com/photo-1599423301110-4b9a59e24df6?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Bâtiment commercial">
-          <div class="card-body">
-            <h5 class="card-title">Bâtiment commercial à Porto-Novo</h5>
-            <p class="card-text">Livré en 2022 – Note client : ⭐⭐⭐⭐</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Contact -->
-  <div id="contact" class="page-section container">
-    <h2 class="section-title text-center">Contactez-nous</h2>
-    <form class="row g-3">
-      <div class="col-md-6">
-        <label for="name" class="form-label">Nom</label>
-        <input type="text" class="form-control" id="name" placeholder="Votre nom">
-      </div>
-      <div class="col-md-6">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Votre email">
-      </div>
-      <div class="col-12">
-        <label for="message" class="form-label">Message</label>
-        <textarea class="form-control" id="message" rows="4" placeholder="Votre demande..."></textarea>
-      </div>
-      <div class="col-12 text-center">
-        <button type="submit" class="btn btn-success">Envoyer</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Devis -->
-  <div id="devis" class="page-section container">
-    <h2 class="section-title text-center">Demande de devis</h2>
-    <form class="row g-3">
-      <div class="col-md-6">
-        <label for="service" class="form-label">Type de service</label>
-        <select class="form-select" id="service">
-          <option>Construction</option>
-          <option>Rénovation</option>
-          <option>Plan & suivi</option>
-        </select>
-      </div>
-      <div class="col-md-6">
-        <label for="budget" class="form-label">Budget estimé</label>
-        <input type="text" class="form-control" id="budget" placeholder="Ex: 10M FCFA">
-      </div>
-      <div class="col-12">
-        <label for="details" class="form-label">Détails du projet</label>
-        <textarea class="form-control" id="details" rows="4" placeholder="Décrivez votre besoin..."></textarea>
-      </div>
-      <div class="col-12 text-center">
-        <button type="submit" class="btn btn-warning">Envoyer la demande</button>
-      </div>
-    </form>
   </div>
 
   <!-- Footer -->
