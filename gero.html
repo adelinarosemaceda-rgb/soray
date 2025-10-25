@@ -67,19 +67,21 @@
       justify-content: center; /* helps center nav when space available */
     }
 
-    nav#mainNav {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: var(--nav-gap);
-      align-items: center;
-      white-space: nowrap;           /* avoid wrapping onto new line */
-      overflow-x: auto;             /* if too narrow, allow horizontal scroll */
-      -webkit-overflow-scrolling: touch;
-      padding: 6px 4px;
-      scrollbar-width: none; /* Firefox */
-    }
+nav#mainNav {
+  position: absolute;
+  left: 50%;
+  top: 50%;          /* ajoute ceci */
+  transform: translate(-50%, -50%); /* ajuste verticalement */
+  display: flex;
+  gap: var(--nav-gap);
+  align-items: center;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 4px;
+  scrollbar-width: none;
+}
+
     /* hide scrollbar visually but keep scroll functionality */
     nav#mainNav::-webkit-scrollbar { display: none; }
 
