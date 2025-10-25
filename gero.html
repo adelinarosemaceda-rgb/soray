@@ -23,7 +23,6 @@
       flex-direction: column;
     }
 
-    /* Header layout : logo left, nav visually centered */
     .site-header {
       position: fixed;
       top: 0;
@@ -39,7 +38,6 @@
       backdrop-filter: blur(6px);
     }
 
-    /* Brand on the left */
     .brand {
       display: flex;
       align-items: center;
@@ -59,30 +57,28 @@
       text-align: left;
     }
 
-    /* Navigation centered visually using absolute centering */
     .nav-wrap {
       position: relative;
       flex: 1 1 auto;
       display: flex;
-      justify-content: center; /* helps center nav when space available */
+      justify-content: center;
     }
 
-nav#mainNav {
-  position: absolute;
-  left: 50%;
-  top: 50%;          /* ajoute ceci */
-  transform: translate(-50%, -50%); /* ajuste verticalement */
-  display: flex;
-  gap: var(--nav-gap);
-  align-items: center;
-  white-space: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 6px 4px;
-  scrollbar-width: none;
-}
+    nav#mainNav {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: var(--nav-gap);
+      align-items: center;
+      white-space: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 6px 4px;
+      scrollbar-width: none;
+    }
 
-    /* hide scrollbar visually but keep scroll functionality */
     nav#mainNav::-webkit-scrollbar { display: none; }
 
     nav#mainNav a {
@@ -92,7 +88,7 @@ nav#mainNav {
       position: relative;
       display: inline-block;
       padding: 6px 4px;
-      font-size: clamp(13px, 1.2vw, 15px); /* responsive font */
+      font-size: clamp(13px, 1.2vw, 15px);
     }
     nav#mainNav a:hover { color: var(--nav-hover); }
     nav#mainNav a.active::after{
@@ -105,20 +101,18 @@ nav#mainNav {
       background: var(--nav-hover);
     }
 
-    /* Make sure logo+nav don't overlap on very small screens: brand kept left, nav can scroll */
     @media (max-width: 520px){
       .brand .site-title { font-size: 13px; }
       .site-header { padding-left: 12px; padding-right: 12px; }
       nav#mainNav { gap: 12px; }
     }
 
-    /* Section & layout styles (kept from original) */
     .hero {
       background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
-      padding: 140px 0 80px; /* top space to account for fixed header */
+      padding: 140px 0 80px;
       animation: fadeIn 2s ease-in-out;
-      margin-top: 64px; /* small offset to avoid content under header */
+      margin-top: 64px;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(1.02); }
@@ -161,27 +155,23 @@ nav#mainNav {
       text-align: center;
     }
 
-    /* ensure carousel images keep aspect ratio in detail view */
     #parcelle-carousel .carousel-item img { height: 450px; object-fit: cover; }
 
-    /* small helpers */
     .container-offset { padding-top: 20px; }
 
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="site-header" role="banner">
     <div class="brand" aria-hidden="false">
-  <a href="#" onclick="showPage('home'); return false;">
-    <img src="https://img.icons8.com/isometric/100/building.png" alt="">
-  </a>
-  <div class="site-title"></div>
-</div>
-    
+      <a href="#" onclick="showPage('home'); return false;">
+        <img src="https://img.icons8.com/isometric/100/building.png" alt="">
+      </a>
+      <div class="site-title"></div>
+    </div>
+
     <div class="nav-wrap" aria-hidden="false">
-      <!-- centered nav (absolute centered) -->
       <nav id="mainNav" aria-label="Menu principal">
         <a class="nav-link active" href="#" onclick="showPage('home'); return false;">Accueil</a>
         <a class="nav-link" href="#" onclick="showPage('parcelles'); return false;">Parcelles</a>
@@ -191,13 +181,10 @@ nav#mainNav {
         <a class="nav-link" href="#" onclick="showPage('devis'); return false;">Demande de devis</a>
       </nav>
     </div>
-
   </header>
 
-  <!-- ------- PAGES ------- -->
-
-  <!-- HOME -->
   <main>
+    <!-- HOME -->
     <section id="home" class="page-section active">
       <header class="hero text-center">
         <div class="container">
@@ -239,7 +226,6 @@ nav#mainNav {
               </div>
             </div>
           </div>
-
         </div>
       </section>
     </section>
@@ -283,10 +269,9 @@ nav#mainNav {
       </div>
     </section>
 
-    <!-- BTP (contenu pris du premier code) -->
+    <!-- BTP -->
     <section id="btp" class="page-section container container-offset">
       <h2 class="section-title text-center">Nos services BTP</h2>
-
       <div class="row">
         <div class="col-md-4 mb-4">
           <div class="card shadow-sm h-100">
@@ -297,7 +282,6 @@ nav#mainNav {
             </div>
           </div>
         </div>
-
         <div class="col-md-4 mb-4">
           <div class="card shadow-sm h-100">
             <img src="https://images.unsplash.com/photo-1600573472590-34d5a3f3c1be?auto=format&fit=crop&w=1200&q=80" class="card-img-top" alt="Rénovation">
@@ -307,7 +291,6 @@ nav#mainNav {
             </div>
           </div>
         </div>
-
         <div class="col-md-4 mb-4">
           <div class="card shadow-sm h-100">
             <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02e4?auto=format&fit=crop&w=1200&q=80" class="card-img-top" alt="Plans & Suivi">
@@ -330,7 +313,6 @@ nav#mainNav {
             </div>
           </div>
         </div>
-
         <div class="col-md-4 mb-4">
           <div class="card shadow-sm">
             <img src="https://images.unsplash.com/photo-1600585154339-5c3a8e7301da?auto=format&fit=crop&w=1200&q=80" class="card-img-top" alt="Clôture sécurisée">
@@ -343,7 +325,7 @@ nav#mainNav {
       </div>
     </section>
 
-    <!-- ABOUT (contenu pris du premier code) -->
+    <!-- ABOUT -->
     <section id="about" class="page-section container container-offset">
       <h2 class="section-title text-center">À propos de nous</h2>
       <p class="text-center mb-4">Nous sommes une entreprise béninoise spécialisée dans la vente de parcelles sécurisées et les services BTP. Notre mission est de rendre l’investissement immobilier accessible, fiable et durable.</p>
@@ -372,7 +354,7 @@ nav#mainNav {
       </div>
     </section>
 
-    <!-- CONTACT (contenu pris du premier code: formulaire complet) -->
+    <!-- CONTACT -->
     <section id="contact" class="page-section container container-offset">
       <h2 class="section-title text-center">Contactez-nous</h2>
       <form class="row g-3">
@@ -394,7 +376,7 @@ nav#mainNav {
       </form>
     </section>
 
-    <!-- DEVIS (contenu pris du premier code: formulaire complet) -->
+    <!-- DEVIS -->
     <section id="devis" class="page-section container container-offset">
       <h2 class="section-title text-center">Demande de devis</h2>
       <form class="row g-3">
@@ -419,10 +401,8 @@ nav#mainNav {
         </div>
       </form>
     </section>
-
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <p class="mb-0">&copy; 2025 Parcelles & BTP Pro</p>
@@ -430,27 +410,19 @@ nav#mainNav {
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    /* SPA navigation */
     function showPage(pageId){
-      // hide all sections
       document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-      // show requested
       const section = document.getElementById(pageId);
       if(section) section.classList.add('active');
-
-      // update nav active state
       document.querySelectorAll('#mainNav .nav-link').forEach(a => a.classList.remove('active'));
       const navLink = Array.from(document.querySelectorAll('#mainNav .nav-link'))
         .find(a => a.textContent.trim().toLowerCase().includes(pageId));
       if(navLink) navLink.classList.add('active');
-
-      // scroll to top smoothly (accounting for fixed header)
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    /* Parcelles data & afficherParcelle (conserve ton comportement) */
     const parcelles = [
       {
         id: "calavi",
@@ -469,13 +441,9 @@ nav#mainNav {
     function afficherParcelle(id){
       const p = parcelles.find(x => x.id === id);
       if(!p) return;
-      // hide all page sections
       document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-      // show detail
       const detail = document.getElementById('parcelle-detail');
-      detail.style.display = 'block';
       detail.classList.add('active');
-
       document.getElementById('parcelle-titre').textContent = p.titre;
       document.getElementById('parcelle-superficie').textContent = p.superficie;
       document.getElementById('parcelle-prix').textContent = p.prix;
@@ -491,27 +459,15 @@ nav#mainNav {
         carousel.appendChild(item);
       });
 
-      // re-init bootstrap carousel (if needed)
       const bs = bootstrap.Carousel.getOrCreateInstance(document.getElementById('parcelle-carousel'));
       bs.to(0);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    /* Optional: sticky shadow on scroll (subtle) */
     window.addEventListener('scroll', () => {
       const header = document.querySelector('.site-header');
-      if(window.scrollY > 60) header.style.boxShadow = '0 6px 18px rgba(0,0,0,0.22)';
-      else header.style.boxShadow = '0 2px 6px rgba(0,0,0,0.15)';
-    });
-
-    // ensure first nav item active at load
-    document.addEventListener('DOMContentLoaded', () => {
-      // safety: mark home active
-      const first = document.querySelector('#mainNav a');
-      if(first) first.classList.add('active');
+      header.style.boxShadow = (window.scrollY > 60) ? '0 6px 18px rgba(0,0,0,0.22)' : '0 2px 6px rgba(0,0,0,0.15)';
     });
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
