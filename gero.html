@@ -23,23 +23,91 @@
       flex-direction: column;
     }
 
-    header {
-      background-color: #fff;
-      border-bottom: 1px solid #ddd;
+    /* Header layout : logo left, nav visually centered */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(33,37,41,0.95);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 8px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      z-index: 1000;
+      backdrop-filter: blur(6px);
     }
 
-    @media (max-width: 768px) {
-      header nav ul li a {
-        font-size: 13px; /* taille plus petite sur mobile */
-        padding: 4px 6px;
-      }
-      header img {
-        width: 50px;
-        height: 50px;
-      }
-      header div div {
-        font-size: 16px;
-      }
+    /* Brand on the left */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+    .brand img{
+      height: 48px;
+      width: auto;
+      display:block;
+    }
+    .brand .site-title{
+      font-weight: 700;
+      color: var(--nav-color);
+      font-size: 15px;
+      line-height: 1.05;
+      text-align: left;
+    }
+
+    /* Navigation centered visually using absolute centering */
+    .nav-wrap {
+      position: relative;
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: center; /* helps center nav when space available */
+    }
+
+    nav#mainNav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: var(--nav-gap);
+      align-items: center;
+      white-space: nowrap;           /* avoid wrapping onto new line */
+      overflow-x: auto;             /* if too narrow, allow horizontal scroll */
+      -webkit-overflow-scrolling: touch;
+      padding: 6px 4px;
+      scrollbar-width: none; /* Firefox */
+    }
+    /* hide scrollbar visually but keep scroll functionality */
+    nav#mainNav::-webkit-scrollbar { display: none; }
+
+    nav#mainNav a {
+      color: var(--nav-color);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      display: inline-block;
+      padding: 6px 4px;
+      font-size: clamp(13px, 1.2vw, 15px); /* responsive font */
+    }
+    nav#mainNav a:hover { color: var(--nav-hover); }
+    nav#mainNav a.active::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background: var(--nav-hover);
+    }
+
+    /* Make sure logo+nav don't overlap on very small screens: brand kept left, nav can scroll */
+    @media (max-width: 520px){
+      .brand .site-title { font-size: 13px; }
+      .site-header { padding-left: 12px; padding-right: 12px; }
+      nav#mainNav { gap: 12px; }
     }
 
     /* Section & layout styles (kept from original) */
@@ -102,22 +170,24 @@
 <body>
 
   <!-- HEADER -->
-  <header class="d-flex align-items-center justify-content-between py-3 px-3 flex-wrap">
-    <div class="text-center me-4">
-      <img src="https://img.icons8.com/isometric/100/building.png" alt="Logo Parcelles & BTP Pro" style="width: 60px; height: 60px;">
-      <div style="font-size: 18px; font-weight: bold; color: #2c3e50;">Parcelles & BTP Pro</div>
+  <header class="site-header" role="banner">
+    <div class="brand" aria-hidden="false">
+      <img src="https://img.icons8.com/isometric/100/building.png" alt="">
+      <div class="site-title">amp;</div>
     </div>
 
-    <nav class="flex-grow-1">
-      <ul class="nav justify-content-center flex-wrap">
-        <li class="nav-item"><a href="#accueil" class="nav-link text-dark fw-semibold">Accueil</a></li>
-        <li class="nav-item"><a href="#parcelles" class="nav-link text-dark fw-semibold">Parcelles</a></li>
-        <li class="nav-item"><a href="#btp" class="nav-link text-dark fw-semibold">BTP</a></li>
-        <li class="nav-item"><a href="#apropos" class="nav-link text-dark fw-semibold">À propos</a></li>
-        <li class="nav-item"><a href="#contact" class="nav-link text-dark fw-semibold">Contact</a></li>
-        <li class="nav-item"><a href="#devis" class="nav-link text-dark fw-semibold">Demander un devis</a></li> 
-      </ul>
-    </nav>
+    <div class="nav-wrap" aria-hidden="false">
+      <!-- centered nav (absolute centered) -->
+      <nav id="mainNav" aria-label="Menu principal">
+        <a class="nav-link active" href="#" onclick="showPage('home'); return false;">Accueil</a>
+        <a class="nav-link" href="#" onclick="showPage('parcelles'); return false;">Parcelles</a>
+        <a class="nav-link" href="#" onclick="showPage('btp'); return false;">BTP</a>
+        <a class="nav-link" href="#" onclick="showPage('about'); return false;">À propos</a>
+        <a class="nav-link" href="#" onclick="showPage('contact'); return false;">Contact</a>
+        <a class="nav-link" href="#" onclick="showPage('devis'); return false;">Demande de devis</a>
+      </nav>
+    </div>
+
   </header>
 
   <!-- ------- PAGES ------- -->
